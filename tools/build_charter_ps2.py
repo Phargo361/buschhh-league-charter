@@ -401,11 +401,12 @@ def build_blocks(blocks):
                 for i, row in enumerate(b["rows"]):
                     out.append(MenuRow(FRAME_W, row[0], row[1],
                                        selected=(i == 0)))
-                    out.append(Paragraph(
-                        '<font color="#8FA8D6">%s</font>' % row[2],
-                        ParagraphStyle("eff", parent=body, fontSize=9.0,
-                                       leading=12.6, leftIndent=14,
-                                       spaceAfter=4)))
+                    if len(row) > 2 and row[2]:
+                        out.append(Paragraph(
+                            '<font color="#8FA8D6">%s</font>' % row[2],
+                            ParagraphStyle("eff", parent=body, fontSize=9.0,
+                                           leading=12.6, leftIndent=14,
+                                           spaceAfter=4)))
             out.append(Spacer(1, 7))
     return out
 

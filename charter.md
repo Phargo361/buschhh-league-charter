@@ -32,7 +32,29 @@ The Commissioner posts the exact dates for each league year before the League Ye
 
 ---
 
-## 2. Money
+## 2. League Dates
+
+| 2026 Season | Date | Note |
+|---|---|---|
+| NFL draft ends | Sat, Apr 25, 2026 |  |
+| League Year starts | Sat, May 16, 2026 | Offseason opens. Rosters go to 23 bench spots. Taxi graduation. |
+| Buy-ins due | Sat, May 16, 2026 | $200 per team. An unpaid team is locked. |
+| New rule pitch | Sat, May 23, 2026 |  |
+| New rule voting | Sat, May 30, 2026 | One week to vote. No vote counts as a no. |
+| Rookie draft | Sat, Jun 6, 2026 | Four rounds, rookies only. |
+| Last preseason game | Sat, Aug 29, 2026 |  |
+| Regular Season starts | Mon, Aug 31, 2026 | Rosters drop to 16 bench spots, 25 players. $350 FAAB added. |
+| First NFL game | Wed, Sep 9, 2026 | Taxi squad closes. No player may be added to it after this. |
+| Trade deadline | Sun, Dec 13, 2026 | End of Week 14. No trades during the playoffs. |
+| Playoffs start | Sun, Dec 20, 2026 | Weeks 15, 16, and 17. Toilet Bowl runs alongside. |
+| Championship | Sun, Jan 3, 2027 |  |
+| Trading reopens | Mon, Jan 11, 2027 | After Week 18. |
+
+These dates come from three NFL dates for the season: the last day of the draft, the last preseason game, and the first game. Every other date above is set by the rules in this charter.
+
+---
+
+## 3. Money
 
 The buy-in is $200 per team. It is due 3 weeks before the rookie draft.
 
@@ -46,7 +68,7 @@ A team that has not paid is locked. No moves, no draft, no auctions until the de
 
 ---
 
-## 3. Platform
+## 4. Platform
 
 The season runs on Sleeper, plus as much of the offseason as possible.
 
@@ -54,7 +76,7 @@ The first draft runs on Yahoo. Later drafts may move sites year to year.
 
 ---
 
-## 4. Scoring
+## 5. Scoring
 
 - Half PPR (0.5 per catch)
 - QB interception: minus 4
@@ -63,7 +85,7 @@ The first draft runs on Yahoo. Later drafts may move sites year to year.
 
 ---
 
-## 5. Lineup
+## 6. Lineup
 
 Each team starts 9 players.
 
@@ -80,7 +102,7 @@ Each team starts 9 players.
 
 ---
 
-## 6. Roster
+## 7. Roster
 
 | Period | Bench spots |
 |---|---|
@@ -109,7 +131,7 @@ A rookie must be placed on the taxi squad before the first NFL game of the seaso
 
 ---
 
-## 7. Drafts
+## 8. Drafts
 
 **First draft ever**
 
@@ -133,7 +155,7 @@ The team in slot 10 picks first. The champion picks last in every round.
 
 ---
 
-## 8. Free Agents
+## 9. Free Agents
 
 FAAB is fake money used to bid on free agents. The high bid wins.
 
@@ -144,7 +166,7 @@ FAAB is fake money used to bid on free agents. The high bid wins.
 
 ---
 
-## 9. Trades
+## 10. Trades
 
 - The deadline is the end of the Regular Season. No trades during the playoffs. Trading reopens after Week 18.
 - A trade goes through as soon as both managers accept it.
@@ -153,7 +175,7 @@ FAAB is fake money used to bid on free agents. The high bid wins.
 
 ---
 
-## 10. Playoffs
+## 11. Playoffs
 
 Playoffs run Weeks 15, 16, and 17. Six teams qualify.
 
@@ -165,7 +187,7 @@ The four teams that miss the playoffs play the Toilet Bowl. It does not affect d
 
 ---
 
-## 11. Toilet Bowl
+## 12. Toilet Bowl
 
 The Toilet Bowl winner is the team that finishes last in the losers bracket.
 
@@ -175,7 +197,7 @@ If the Toilet Bowl winner quits the league, the punishment passes to the next wo
 
 ---
 
-## 12. Rule Changes
+## 13. Rule Changes
 
 There are three ways a rule changes: a Minor change, a Major change, or a Commissioner decision.
 

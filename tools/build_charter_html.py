@@ -96,7 +96,8 @@ def render_block(b):
             parts = []
             for r in b["rows"]:
                 parts.append(render_menu_row(r[0], r[1]))
-                parts.append('<p class="row-note">%s</p>' % esc(r[2]))
+                if len(r) > 2 and r[2]:
+                    parts.append('<p class="row-note">%s</p>' % esc(r[2]))
             rows = "".join(parts)
         out.append('<div class="rows">%s</div>' % rows)
         return "".join(out)

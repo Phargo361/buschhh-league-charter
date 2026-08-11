@@ -90,6 +90,97 @@
     },
     {
       "num": 2,
+      "name": "League Dates",
+      "greek": "ΚΑΙΡΟΙ",
+      "blocks": [
+        {
+          "type": "table",
+          "header": [
+            "2026 Season",
+            "Date",
+            "Note"
+          ],
+          "rows": [
+            [
+              "NFL draft ends",
+              "Sat, Apr 25, 2026",
+              ""
+            ],
+            [
+              "League Year starts",
+              "Sat, May 16, 2026",
+              "Offseason opens. Rosters go to 23 bench spots. Taxi graduation."
+            ],
+            [
+              "Buy-ins due",
+              "Sat, May 16, 2026",
+              "$200 per team. An unpaid team is locked."
+            ],
+            [
+              "New rule pitch",
+              "Sat, May 23, 2026",
+              ""
+            ],
+            [
+              "New rule voting",
+              "Sat, May 30, 2026",
+              "One week to vote. No vote counts as a no."
+            ],
+            [
+              "Rookie draft",
+              "Sat, Jun 6, 2026",
+              "Four rounds, rookies only."
+            ],
+            [
+              "Last preseason game",
+              "Sat, Aug 29, 2026",
+              ""
+            ],
+            [
+              "Regular Season starts",
+              "Mon, Aug 31, 2026",
+              "Rosters drop to 16 bench spots, 25 players. $350 FAAB added."
+            ],
+            [
+              "First NFL game",
+              "Wed, Sep 9, 2026",
+              "Taxi squad closes. No player may be added to it after this."
+            ],
+            [
+              "Trade deadline",
+              "Sun, Dec 13, 2026",
+              "End of Week 14. No trades during the playoffs."
+            ],
+            [
+              "Playoffs start",
+              "Sun, Dec 20, 2026",
+              "Weeks 15, 16, and 17. Toilet Bowl runs alongside."
+            ],
+            [
+              "Championship",
+              "Sun, Jan 3, 2027",
+              ""
+            ],
+            [
+              "Trading reopens",
+              "Mon, Jan 11, 2027",
+              "After Week 18."
+            ]
+          ],
+          "widths": [
+            0.34,
+            0.3,
+            0.36
+          ]
+        },
+        {
+          "type": "para",
+          "text": "These dates come from three NFL dates for the season: the last day of the draft, the last preseason game, and the first game. Every other date above is set by the rules in this charter."
+        }
+      ]
+    },
+    {
+      "num": 3,
       "name": "Money",
       "greek": "ΑΡΓΥΡΙΟΝ",
       "blocks": [
@@ -129,7 +220,7 @@
       ]
     },
     {
-      "num": 3,
+      "num": 4,
       "name": "Platform",
       "greek": "ΤΟΠΟΣ",
       "blocks": [
@@ -144,7 +235,7 @@
       ]
     },
     {
-      "num": 4,
+      "num": 5,
       "name": "Scoring",
       "greek": "ΒΑΘΜΟΙ",
       "blocks": [
@@ -160,7 +251,7 @@
       ]
     },
     {
-      "num": 5,
+      "num": 6,
       "name": "Lineup",
       "greek": "ΤΑΞΙΣ",
       "blocks": [
@@ -212,7 +303,7 @@
       ]
     },
     {
-      "num": 6,
+      "num": 7,
       "name": "Roster",
       "greek": "ΚΑΤΑΛΟΓΟΣ",
       "blocks": [
@@ -280,7 +371,7 @@
       ]
     },
     {
-      "num": 7,
+      "num": 8,
       "name": "Drafts",
       "greek": "ΚΛΗΡΟΣ",
       "blocks": [
@@ -327,7 +418,7 @@
       ]
     },
     {
-      "num": 8,
+      "num": 9,
       "name": "Free Agents",
       "greek": "ΑΓΟΡΑ",
       "blocks": [
@@ -347,7 +438,7 @@
       ]
     },
     {
-      "num": 9,
+      "num": 10,
       "name": "Trades",
       "greek": "ΑΝΤΑΛΛΑΓΗ",
       "blocks": [
@@ -363,7 +454,7 @@
       ]
     },
     {
-      "num": 10,
+      "num": 11,
       "name": "Playoffs",
       "greek": "ΑΓΩΝΕΣ",
       "blocks": [
@@ -386,7 +477,7 @@
       ]
     },
     {
-      "num": 11,
+      "num": 12,
       "name": "Toilet Bowl",
       "greek": "ΑΙΣΧΥΝΗ",
       "blocks": [
@@ -405,7 +496,7 @@
       ]
     },
     {
-      "num": 12,
+      "num": 13,
       "name": "Rule Changes",
       "greek": "ΝΟΜΟΘΕΣΙΑ",
       "blocks": [
@@ -449,5 +540,12 @@
       ]
     }
   ],
-  "colophon": "Ratified by the managers. Amended by vote. Enforced by the Commissioner."
+  "colophon": "Ratified by the managers. Amended by vote. Enforced by the Commissioner.",
+  "seasons": {
+    "2026": {
+      "nfl_draft_end": "2026-04-25",
+      "last_preseason_game": "2026-08-29",
+      "first_nfl_game": "2026-09-09"
+    }
+  }
 }
