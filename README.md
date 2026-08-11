@@ -34,15 +34,15 @@ next build overwrites them.
 ./update.sh "what changed"
 ```
 
-That regenerates the page, both PDFs, and the preview card, then pushes.
+That regenerates the page, the PDF, and the preview card, then pushes.
 
 Requires Python 3 and `reportlab` (`pip install reportlab`) for the PDF
-builders. The HTML builder needs only the standard library.
+builder. The HTML and markdown builders need only the standard library.
 
 ### Spec structure
 
-Each entry in `sections` has a number, an English name, a Greek label, and a
-list of content blocks. Block types:
+Each entry in `sections` has a number, a name, and a list of content
+blocks. Block types:
 
 | Type | Renders as |
 |---|---|
@@ -63,7 +63,6 @@ list of content blocks. Block types:
 | `charter_spec.json` | Source of truth. Edit this. |
 | `charter.md` | Generated. Plain markdown, for pasting into Sleeper or a group chat. |
 | `pdf/charter-ps2.pdf` | Print/archive copy, PS2 config menu styling. |
-| `pdf/charter-greek.pdf` | Print/archive copy, ancient Greek styling. |
 | `card.png` | Link preview image. |
 | `tools/` | The generators. |
 

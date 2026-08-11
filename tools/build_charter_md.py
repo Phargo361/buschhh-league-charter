@@ -91,8 +91,8 @@ def build(spec):
 
 
 def main(spec_path, out_path):
-    # The spec carries Greek section labels, so the encoding is never the
-    # platform default: Windows would read it as cp1252 and fail.
+    # Never the platform default: Windows reads UTF-8 files as cp1252 and
+    # fails on the first character outside that set.
     with open(spec_path, encoding="utf-8") as fh:
         spec = json.load(fh)
     with open(out_path, "w", encoding="utf-8", newline="\n") as fh:

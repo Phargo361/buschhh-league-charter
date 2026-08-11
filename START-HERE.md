@@ -83,7 +83,7 @@ Edit `charter_spec.json`, then:
 ./update.sh "raised the buy-in"
 ```
 
-That rebuilds the website, both PDFs, and the link preview image, then pushes
+That rebuilds the website, the PDF, and the link preview image, then pushes
 everything. The site updates about a minute later.
 
 Or tell Claude Code what changed and let it edit the spec for you.

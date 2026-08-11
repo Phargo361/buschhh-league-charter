@@ -148,7 +148,6 @@ header.bar{display:flex;align-items:center;gap:16px;padding:12px 18px;margin-bot
 }
 .bar .divider{width:1px;align-self:stretch;background:var(--edge)}
 .bar .current{font-weight:700;font-size:15px;letter-spacing:.04em}
-.bar .greek{margin-left:auto;color:var(--dim);font-size:13px;letter-spacing:.1em}
 
 .layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;align-items:start}
 
@@ -253,7 +252,6 @@ footer kbd{
   nav.side button{white-space:nowrap;font-size:12px}
   nav.side button .cursor{display:none}
   main.panel{padding:16px 15px 20px}
-  .bar .greek{display:none}
   footer .hints{display:none}
   footer .hints.touch{display:flex}
   footer.hud>span:first-child{display:none}
@@ -297,7 +295,6 @@ JS = """
   var panels = Array.prototype.slice.call(
     document.querySelectorAll('.sect'));
   var current = document.getElementById('current');
-  var greek = document.getElementById('greek');
   var count = document.getElementById('count');
   var search = document.getElementById('search');
   var idx = 0;
@@ -313,7 +310,6 @@ JS = """
     panels.forEach(function(p, n){ p.hidden = n !== i; });
     var sec = panels[i];
     current.textContent = sec.dataset.name.toUpperCase();
-    greek.textContent = sec.dataset.greek;
     count.textContent = (i + 1) + ' / ' + panels.length;
     if(push && location.hash !== '#' + sec.id){
       try { history.replaceState(null, '', '#' + sec.id); }
@@ -417,10 +413,10 @@ def build(spec, base=""):
         body = "".join(render_block(b) for b in s["blocks"])
         panels.append(
             '<section class="sect" id="%s" role="tabpanel" data-name="%s" '
-            'data-greek="%s" hidden>'
+            "hidden>"
             '<div class="panel-head"><span class="tag">%s</span>'
             "<h1>%s</h1></div>%s</section>"
-            % (slug(s["name"]), esc(s["name"]), esc(s["greek"]), tag,
+            % (slug(s["name"]), esc(s["name"]), tag,
                esc(s["name"].upper()), body)
         )
 
@@ -450,7 +446,6 @@ def build(spec, base=""):
     <span class="kicker">CONFIG</span>
     <span class="divider"></span>
     <span class="current" id="current">THE NUMBERS</span>
-    <span class="greek" id="greek"></span>
   </header>
 
   <div class="layout">

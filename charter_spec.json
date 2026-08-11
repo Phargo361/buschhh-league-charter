@@ -1,13 +1,11 @@
 {
   "title": "Buschhhhhhhhhhhh League",
   "subtitle": "Charter",
-  "greek_title": "ΝΟΜΟΣ ΤΗΣ ΛΕΓΕΩΝΟΣ",
   "preamble": "A ten team dynasty league. Teams keep their players from year to year. The Commissioner decides anything this charter does not cover.",
   "sections": [
     {
       "num": 0,
       "name": "The Numbers",
-      "greek": "ΑΡΙΘΜΟΙ",
       "blocks": [
         {
           "type": "kv",
@@ -59,7 +57,6 @@
     {
       "num": 1,
       "name": "Calendar",
-      "greek": "ΗΜΕΡΟΛΟΓΙΟΝ",
       "blocks": [
         {
           "type": "table",
@@ -91,7 +88,6 @@
     {
       "num": 2,
       "name": "League Dates",
-      "greek": "ΚΑΙΡΟΙ",
       "blocks": [
         {
           "type": "table",
@@ -182,7 +178,6 @@
     {
       "num": 3,
       "name": "Money",
-      "greek": "ΑΡΓΥΡΙΟΝ",
       "blocks": [
         {
           "type": "para",
@@ -222,7 +217,6 @@
     {
       "num": 4,
       "name": "Platform",
-      "greek": "ΤΟΠΟΣ",
       "blocks": [
         {
           "type": "para",
@@ -237,7 +231,6 @@
     {
       "num": 5,
       "name": "Scoring",
-      "greek": "ΒΑΘΜΟΙ",
       "blocks": [
         {
           "type": "bullets",
@@ -253,7 +246,6 @@
     {
       "num": 6,
       "name": "Lineup",
-      "greek": "ΤΑΞΙΣ",
       "blocks": [
         {
           "type": "para",
@@ -305,7 +297,6 @@
     {
       "num": 7,
       "name": "Roster",
-      "greek": "ΚΑΤΑΛΟΓΟΣ",
       "blocks": [
         {
           "type": "table",
@@ -373,7 +364,6 @@
     {
       "num": 8,
       "name": "Drafts",
-      "greek": "ΚΛΗΡΟΣ",
       "blocks": [
         {
           "type": "sub",
@@ -420,7 +410,6 @@
     {
       "num": 9,
       "name": "Free Agents",
-      "greek": "ΑΓΟΡΑ",
       "blocks": [
         {
           "type": "para",
@@ -440,7 +429,6 @@
     {
       "num": 10,
       "name": "Trades",
-      "greek": "ΑΝΤΑΛΛΑΓΗ",
       "blocks": [
         {
           "type": "bullets",
@@ -456,7 +444,6 @@
     {
       "num": 11,
       "name": "Playoffs",
-      "greek": "ΑΓΩΝΕΣ",
       "blocks": [
         {
           "type": "para",
@@ -479,7 +466,6 @@
     {
       "num": 12,
       "name": "Toilet Bowl",
-      "greek": "ΑΙΣΧΥΝΗ",
       "blocks": [
         {
           "type": "para",
@@ -498,7 +484,6 @@
     {
       "num": 13,
       "name": "Rule Changes",
-      "greek": "ΝΟΜΟΘΕΣΙΑ",
       "blocks": [
         {
           "type": "para",

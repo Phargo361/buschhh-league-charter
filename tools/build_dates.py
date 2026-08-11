@@ -20,7 +20,6 @@ import json
 import sys
 
 SECTION_NAME = "League Dates"
-SECTION_GREEK = "ΚΑΙΡΟΙ"
 MONDAY = 0
 
 
@@ -96,7 +95,6 @@ def section_for(year, anchors):
     return {
         "num": 0,  # renumbered below
         "name": SECTION_NAME,
-        "greek": SECTION_GREEK,
         "blocks": [
             {
                 "type": "table",

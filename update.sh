@@ -23,7 +23,6 @@ python3 tools/build_charter_md.py charter_spec.json charter.md
 if python3 -c "import reportlab" 2>/dev/null; then
   say "Rebuilding PDFs and the preview card"
   python3 tools/build_charter_ps2.py charter_spec.json pdf/charter-ps2.pdf
-  python3 tools/build_charter.py     charter_spec.json pdf/charter-greek.pdf
   python3 tools/make_card.py         charter_spec.json card.png
 else
   say "reportlab not installed, skipping PDFs (pip install reportlab to include them)"

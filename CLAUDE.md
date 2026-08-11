@@ -44,9 +44,9 @@ than doing the remaining steps by hand.
 ## The rule that matters most
 
 `charter_spec.json` is the single source of truth. `index.html`, `charter.md`,
-both PDFs, and `card.png` are all generated from it.
+the PDF, and `card.png` are all generated from it.
 
-**Never hand-edit `index.html`, `charter.md`, the PDFs, or `card.png`.** The
+**Never hand-edit `index.html`, `charter.md`, the PDF, or `card.png`.** The
 next build overwrites them. To change the charter, edit `charter_spec.json`
 and run:
 
@@ -65,18 +65,17 @@ generator in `tools/`, then rebuild.
 | `index.html` | Generated. The published page. |
 | `card.png` | Generated. Link preview image, 1200x630. |
 | `charter.md` | Generated. Plain text for group chats and Sleeper. |
-| `pdf/` | Generated. Two styled archive copies. |
+| `pdf/` | Generated. Styled archive copy. |
 | `tools/build_charter_html.py` | HTML generator. Standard library only. |
 | `tools/build_charter_md.py` | Markdown generator. Standard library only. |
 | `tools/build_charter_ps2.py` | PS2-styled PDF. Needs reportlab. |
-| `tools/build_charter.py` | Ancient-Greek-styled PDF. Needs reportlab. |
 | `tools/make_card.py` | Preview card. Needs reportlab and poppler. |
 | `deploy.sh` | First-time publish. |
 | `update.sh` | Rebuild and push after an amendment. |
 
 ## Spec format
 
-`sections` is an ordered list. Each has `num`, `name`, `greek`, and `blocks`.
+`sections` is an ordered list. Each has `num`, `name`, and `blocks`.
 Block types and what they render as:
 
 | `type` | Renders as |

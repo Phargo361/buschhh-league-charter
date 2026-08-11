@@ -57,8 +57,8 @@ AMBER = HexColor("#FFC94A")
 SEL_FILL = Color(0.180, 0.400, 0.760, alpha=0.55)
 WHITE = HexColor("#FFFFFF")
 
-# DejaVu first, then whatever the platform ships that carries Greek glyphs,
-# since the section labels need them. Condensed faces fall back to regular.
+# DejaVu first, then whatever sans the platform ships.
+# Condensed faces fall back to regular when unavailable.
 FONTS = {
     "UI": fontpaths.require(
         "the body face", "DejaVuSans.ttf", "verdana.ttf", "arial.ttf",
@@ -145,7 +145,7 @@ def bevel_box(canv, x, y, w, h, r=6, fill=PANEL_FILL, edge=CYAN,
     canv.restoreState()
 
 
-def draw_header(canv, section_name, greek):
+def draw_header(canv, section_name):
     """Top status bar: CONFIG label plus current category."""
     x, y = 0.42 * inch, PAGE_H - 0.98 * inch
     w, h = PAGE_W - 0.84 * inch, 0.60 * inch
@@ -166,9 +166,6 @@ def draw_header(canv, section_name, greek):
     canv.setFillColor(TEXT)
     canv.drawString(div + 16, y + h / 2 - 5, section_name.upper())
 
-    canv.setFont("UI", 10.5)
-    canv.setFillColor(TEXT_DIM)
-    canv.drawRightString(x + w - 16, y + h / 2 - 4, greek)
     canv.restoreState()
 
 
@@ -487,7 +484,7 @@ def make_doc(spec, out_path, registry, total_pages):
         idx = registry.get(page, 0)
         sec = spec["sections"][idx]
         draw_background(canv)
-        draw_header(canv, sec["name"], sec["greek"])
+        draw_header(canv, sec["name"])
         draw_sidebar(canv, labels, idx)
         draw_panel(canv, sec["name"], sec["num"])
         draw_footer(canv, page, total_pages or page)
