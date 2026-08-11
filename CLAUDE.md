@@ -66,6 +66,10 @@ generator in `tools/`, then rebuild.
 | `card.png` | Generated. Link preview image, 1200x630. |
 | `charter.md` | Generated. Plain text for group chats and Sleeper. |
 | `pdf/` | Generated. Styled archive copy. |
+| `tools/build_dates.py` | Derives the League Dates section from a season's anchors. |
+| `tools/fetch_anchors.py` | Pulls preseason and Week 1 dates from ESPN. |
+| `tools/roll_season.py` | Decides whether the next season can be rolled in. |
+| `.github/workflows/roll-season.yml` | Weekly job that opens the rollover PR. |
 | `tools/build_charter_html.py` | HTML generator. Standard library only. |
 | `tools/build_charter_md.py` | Markdown generator. Standard library only. |
 | `tools/build_charter_ps2.py` | PS2-styled PDF. Needs reportlab. |
@@ -101,6 +105,22 @@ The phrase must appear in `text`, and its first occurrence becomes the link.
 The web page and `charter.md` render it as a link; the two PDFs ignore the key
 and print the phrase as plain words, because a raw URL would wreck the
 config-menu layout. The page prints the URL in parentheses on paper.
+
+## The League Dates section
+
+Never hand-edit it. `seasons.<year>` in the spec holds three NFL anchor dates
+and nothing else; `build_dates.py` derives every league date from them using
+the rules in the charter, so the calendar cannot disagree with the rules.
+
+    python3 tools/build_dates.py charter_spec.json 2027
+
+Change a rule that a date depends on, and the derivation in `build_dates.py`
+has to change with it. The comments there name the section each rule lives in.
+
+A weekly GitHub Action rolls the next season in on its own. It fetches the
+preseason and Week 1 anchors from ESPN once the NFL publishes the schedule
+around May, opens a pull request rather than pushing, and files an issue
+asking for `nfl_draft_end`, which is the one date no API provides.
 
 ## House style for the charter text
 
