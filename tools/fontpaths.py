@@ -17,13 +17,32 @@ LINUX_DIRS = ("/usr/share/fonts/truetype/dejavu",
               "/usr/local/share/fonts")
 
 
+def extra_dirs():
+    """Font directories that are not system-wide.
+
+    Windows installs per-user fonts outside C:\\Windows\\Fonts, and matplotlib
+    bundles the real DejaVu family. On a machine with no DejaVu installed,
+    borrowing matplotlib's copy keeps the PDFs closer to their intended look
+    than falling through to a platform substitute.
+    """
+    dirs = [os.path.join(os.environ.get("LOCALAPPDATA", ""),
+                         "Microsoft", "Windows", "Fonts")]
+    try:
+        import matplotlib
+        dirs.append(os.path.join(os.path.dirname(matplotlib.__file__),
+                                 "mpl-data", "fonts", "ttf"))
+    except Exception:
+        pass
+    return [d for d in dirs if d and os.path.isdir(d)]
+
+
 def candidates(*names):
     """Every plausible absolute path for the given font file names, in the
     order given, searched across each platform's font directories."""
     out = []
+    search = (WIN_FONTS,) + MAC_DIRS + LINUX_DIRS + tuple(extra_dirs())
     for name in names:
-        out.append(os.path.join(WIN_FONTS, name))
-        for d in MAC_DIRS + LINUX_DIRS:
+        for d in search:
             out.append(os.path.join(d, name))
     return out
 

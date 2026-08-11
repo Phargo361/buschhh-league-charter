@@ -10,8 +10,8 @@ A ten team dynasty league. Teams keep their players from year to year. The Commi
 |---|---|
 | Buy-in | $200, due 2 weeks before the draft |
 | Payouts | 1st $1,200  \|  2nd $600  \|  3rd $200 |
-| Roster, offseason | 32 |
-| Roster, season | 25 |
+| Bench, offseason | 23  (32 total) |
+| Bench, season | 16  (25 total) |
 | IR spots | 6 |
 | Taxi spots | 8 |
 | Starters | 9 |
@@ -82,12 +82,14 @@ Each team starts 9 players.
 
 ## 6. Roster
 
-| Period | Limit |
+| Period | Bench spots |
 |---|---|
-| Offseason | 32 |
-| Regular Season | 25 |
+| Offseason | 23 |
+| Regular Season | 16 |
 
-Teams must cut to 25 by the Thursday of the week before the first NFL game.
+Bench spots sit on top of the 9 starting spots. That makes 32 players in the offseason and 25 in the regular season. IR and taxi players do not count against either number.
+
+Teams must drop to 16 bench spots, 25 players in all, by the Thursday of the week before the first NFL game.
 
 A team still over 25 after that pays $10 FAAB per extra player, per day. If the team has no FAAB left, players are dropped at random until the roster hits 25.
 

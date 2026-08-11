@@ -21,12 +21,12 @@
               "1st $1,200  |  2nd $600  |  3rd $200"
             ],
             [
-              "Roster, offseason",
-              "32"
+              "Bench, offseason",
+              "23  (32 total)"
             ],
             [
-              "Roster, season",
-              "25"
+              "Bench, season",
+              "16  (25 total)"
             ],
             [
               "IR spots",
@@ -224,16 +224,16 @@
           "type": "table",
           "header": [
             "Period",
-            "Limit"
+            "Bench spots"
           ],
           "rows": [
             [
               "Offseason",
-              "32"
+              "23"
             ],
             [
               "Regular Season",
-              "25"
+              "16"
             ]
           ],
           "widths": [
@@ -243,7 +243,11 @@
         },
         {
           "type": "para",
-          "text": "Teams must cut to 25 by the Thursday of the week before the first NFL game."
+          "text": "Bench spots sit on top of the 9 starting spots. That makes 32 players in the offseason and 25 in the regular season. IR and taxi players do not count against either number."
+        },
+        {
+          "type": "para",
+          "text": "Teams must drop to 16 bench spots, 25 players in all, by the Thursday of the week before the first NFL game."
         },
         {
           "type": "para",
