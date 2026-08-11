@@ -14,7 +14,7 @@
           "rows": [
             [
               "Buy-in",
-              "$200, due 2 weeks before the draft"
+              "$200, due 3 weeks before the rookie draft"
             ],
             [
               "Payouts",
@@ -74,7 +74,7 @@
             ],
             [
               "Regular Season",
-              "Tuesday after NFL preseason Week 3"
+              "Monday after the last preseason game"
             ]
           ],
           "widths": [
@@ -95,7 +95,7 @@
       "blocks": [
         {
           "type": "para",
-          "text": "The buy-in is $200 per team. It is due 2 weeks before the draft."
+          "text": "The buy-in is $200 per team. It is due 3 weeks before the rookie draft."
         },
         {
           "type": "para",
@@ -243,7 +243,7 @@
         },
         {
           "type": "para",
-          "text": "Teams must drop to 16 bench spots, 25 players in all, by the Thursday of the week before the first NFL game."
+          "text": "Teams must drop to 16 bench spots, 25 players in all, on the day the Regular Season starts."
         },
         {
           "type": "para",
@@ -275,7 +275,7 @@
         },
         {
           "type": "para",
-          "text": "A rookie must be placed on the taxi squad before the third NFL preseason game. After that game starts, no player may be added to the taxi squad."
+          "text": "A rookie must be placed on the taxi squad before the first NFL game of the season. After that game starts, no player may be added to the taxi squad."
         }
       ]
     },
@@ -338,9 +338,9 @@
         {
           "type": "bullets",
           "items": [
-            "$350 is added to each team's leftover balance at the start of the season.",
+            "$350 is added to each team's leftover balance when the Regular Season starts.",
             "The lowest bid is $0. No team may go below $0.",
-            "Offseason: bids run once a month in June, July, and August.",
+            "Offseason: bids run once a week, on Wednesday.",
             "Season: bids run daily, Tuesday through Sunday. Dropped players sit on waivers from game time until Tuesday."
           ]
         }

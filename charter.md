@@ -8,7 +8,7 @@ A ten team dynasty league. Teams keep their players from year to year. The Commi
 
 |  |  |
 |---|---|
-| Buy-in | $200, due 2 weeks before the draft |
+| Buy-in | $200, due 3 weeks before the rookie draft |
 | Payouts | 1st $1,200  \|  2nd $600  \|  3rd $200 |
 | Bench, offseason | 23  (32 total) |
 | Bench, season | 16  (25 total) |
@@ -26,7 +26,7 @@ A ten team dynasty league. Teams keep their players from year to year. The Commi
 | Part of year | When it starts |
 |---|---|
 | League Year and Offseason | 3 weeks after the NFL draft ends |
-| Regular Season | Tuesday after NFL preseason Week 3 |
+| Regular Season | Monday after the last preseason game |
 
 The Commissioner posts the exact dates for each league year before the League Year begins.
 
@@ -34,7 +34,7 @@ The Commissioner posts the exact dates for each league year before the League Ye
 
 ## 2. Money
 
-The buy-in is $200 per team. It is due 2 weeks before the draft.
+The buy-in is $200 per team. It is due 3 weeks before the rookie draft.
 
 A team that has not paid is locked. No moves, no draft, no auctions until the deposit is made.
 
@@ -89,7 +89,7 @@ Each team starts 9 players.
 
 Bench spots sit on top of the 9 starting spots. That makes 32 players in the offseason and 25 in the regular season. IR and taxi players do not count against either number.
 
-Teams must drop to 16 bench spots, 25 players in all, by the Thursday of the week before the first NFL game.
+Teams must drop to 16 bench spots, 25 players in all, on the day the Regular Season starts.
 
 A team still over 25 after that pays $10 FAAB per extra player, per day. If the team has no FAAB left, players are dropped at random until the roster hits 25.
 
@@ -105,7 +105,7 @@ Eight spots. Taxi players do not count against the roster limit.
 - A player who leaves the taxi squad cannot return to it.
 - A player with more than 3 years of NFL experience must be activated.
 
-A rookie must be placed on the taxi squad before the third NFL preseason game. After that game starts, no player may be added to the taxi squad.
+A rookie must be placed on the taxi squad before the first NFL game of the season. After that game starts, no player may be added to the taxi squad.
 
 ---
 
@@ -137,9 +137,9 @@ The team in slot 10 picks first. The champion picks last in every round.
 
 FAAB is fake money used to bid on free agents. The high bid wins.
 
-- $350 is added to each team's leftover balance at the start of the season.
+- $350 is added to each team's leftover balance when the Regular Season starts.
 - The lowest bid is $0. No team may go below $0.
-- Offseason: bids run once a month in June, July, and August.
+- Offseason: bids run once a week, on Wednesday.
 - Season: bids run daily, Tuesday through Sunday. Dropped players sit on waivers from game time until Tuesday.
 
 ---
