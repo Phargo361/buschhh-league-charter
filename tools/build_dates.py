@@ -22,6 +22,22 @@ import sys
 SECTION_NAME = "League Dates"
 MONDAY = 0
 
+# Section 6 retires a player from the taxi squad once he has more than 3 years
+# of NFL experience. At a League Year opening in year Y, the class drafted in
+# Y-4 has four seasons behind it and is the one that must be activated: the
+# Y-3 class has exactly three, which is not "more than".
+TAXI_GRADUATION_LAG = 4
+
+# The first overall pick is only a memory hook, so managers can place the
+# expiring class without doing arithmetic. Unknown years fall back to the bare
+# draft year, which is what actually governs.
+FIRST_PICKS = {
+    2022: "Travon Walker",
+    2023: "Bryce Young",
+    2024: "Caleb Williams",
+    2025: "Cam Ward",
+}
+
 
 def d(text):
     return dt.date.fromisoformat(text)
@@ -65,10 +81,18 @@ def derive(anchors):
     # preseason game.
     reg_season = next_weekday(last_pre, MONDAY)
 
+    graduating = league_year.year - TAXI_GRADUATION_LAG
+    taxi_note = "Players drafted in %d must be activated." % graduating
+    if graduating in FIRST_PICKS:
+        taxi_note += " That is the %s draft class." % FIRST_PICKS[graduating]
+
     return [
         ["NFL draft ends", fmt(draft_end), ""],
-        ["League Year starts", fmt(league_year),
-         "Offseason opens. Rosters go to 23 bench spots. Taxi graduation."],
+        ["League Year starts", fmt(league_year), "Offseason opens."],
+        ["Bench goes up to 23", fmt(league_year),
+         "The Commissioner raises the bench from 16 to 23 spots, for 32 "
+         "players in all."],
+        ["Taxi graduation", fmt(league_year), taxi_note],
         ["Buy-ins due", fmt(buy_ins),
          "$200 per team. An unpaid team is locked."],
         ["New rule pitch", fmt(league_year + dt.timedelta(days=7)), ""],
@@ -76,8 +100,10 @@ def derive(anchors):
          "One week to vote. No vote counts as a no."],
         ["Rookie draft", fmt(rookie_draft), "Four rounds, rookies only."],
         ["Last preseason game", fmt(last_pre), ""],
-        ["Regular Season starts", fmt(reg_season),
-         "Rosters drop to 16 bench spots, 25 players. $350 FAAB added."],
+        ["Regular Season starts", fmt(reg_season), "$350 FAAB added."],
+        ["Bench goes down to 16", fmt(reg_season),
+         "The Commissioner cuts the bench from 23 to 16 spots. Teams must be "
+         "at 25 players that day."],
         ["First NFL game", fmt(first_game),
          "Taxi squad closes. No player may be added to it after this."],
         ["Trade deadline", fmt(week_sunday(first_game, 14)),

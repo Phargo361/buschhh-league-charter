@@ -105,7 +105,17 @@
             [
               "League Year starts",
               "Sat, May 16, 2026",
-              "Offseason opens. Rosters go to 23 bench spots. Taxi graduation."
+              "Offseason opens."
+            ],
+            [
+              "Bench goes up to 23",
+              "Sat, May 16, 2026",
+              "The Commissioner raises the bench from 16 to 23 spots, for 32 players in all."
+            ],
+            [
+              "Taxi graduation",
+              "Sat, May 16, 2026",
+              "Players drafted in 2022 must be activated. That is the Travon Walker draft class."
             ],
             [
               "Buy-ins due",
@@ -135,7 +145,12 @@
             [
               "Regular Season starts",
               "Mon, Aug 31, 2026",
-              "Rosters drop to 16 bench spots, 25 players. $350 FAAB added."
+              "$350 FAAB added."
+            ],
+            [
+              "Bench goes down to 16",
+              "Mon, Aug 31, 2026",
+              "The Commissioner cuts the bench from 23 to 16 spots. Teams must be at 25 players that day."
             ],
             [
               "First NFL game",

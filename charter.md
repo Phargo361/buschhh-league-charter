@@ -37,13 +37,16 @@ The Commissioner posts the exact dates for each league year before the League Ye
 | 2026 Season | Date | Note |
 |---|---|---|
 | NFL draft ends | Sat, Apr 25, 2026 |  |
-| League Year starts | Sat, May 16, 2026 | Offseason opens. Rosters go to 23 bench spots. Taxi graduation. |
+| League Year starts | Sat, May 16, 2026 | Offseason opens. |
+| Bench goes up to 23 | Sat, May 16, 2026 | The Commissioner raises the bench from 16 to 23 spots, for 32 players in all. |
+| Taxi graduation | Sat, May 16, 2026 | Players drafted in 2022 must be activated. That is the Travon Walker draft class. |
 | Buy-ins due | Sat, May 16, 2026 | $200 per team. An unpaid team is locked. |
 | New rule pitch | Sat, May 23, 2026 |  |
 | New rule voting | Sat, May 30, 2026 | One week to vote. No vote counts as a no. |
 | Rookie draft | Sat, Jun 6, 2026 | Four rounds, rookies only. |
 | Last preseason game | Sat, Aug 29, 2026 |  |
-| Regular Season starts | Mon, Aug 31, 2026 | Rosters drop to 16 bench spots, 25 players. $350 FAAB added. |
+| Regular Season starts | Mon, Aug 31, 2026 | $350 FAAB added. |
+| Bench goes down to 16 | Mon, Aug 31, 2026 | The Commissioner cuts the bench from 23 to 16 spots. Teams must be at 25 players that day. |
 | First NFL game | Wed, Sep 9, 2026 | Taxi squad closes. No player may be added to it after this. |
 | Trade deadline | Sun, Dec 13, 2026 | End of Week 14. No trades during the playoffs. |
 | Playoffs start | Sun, Dec 20, 2026 | Weeks 15, 16, and 17. Toilet Bowl runs alongside. |
