@@ -9,7 +9,8 @@ from reportlab.pdfgen import canvas
 import build_charter_ps2 as ps2
 
 def main(spec_path, out_png):
-    spec = json.load(open(spec_path))
+    with open(spec_path, encoding="utf-8") as fh:
+        spec = json.load(fh)
     ps2.PAGE_W, ps2.PAGE_H = 1200, 630          # px at 72dpi
     tmp = tempfile.mkdtemp()
     pdf = os.path.join(tmp, "card.pdf")

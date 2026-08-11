@@ -497,9 +497,9 @@ def main(spec_path, out_path, base=""):
     """
     if base and not base.endswith("/"):
         base += "/"
-    with open(spec_path) as fh:
+    with open(spec_path, encoding="utf-8") as fh:
         spec = json.load(fh)
-    with open(out_path, "w", encoding="utf-8") as fh:
+    with open(out_path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(build(spec, base))
     print("wrote", out_path, ("(base: %s)" % base) if base else "(relative URLs)")
 

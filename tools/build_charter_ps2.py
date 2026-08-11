@@ -505,7 +505,7 @@ def make_doc(spec, out_path, registry, total_pages):
 
 
 def main(spec_path, out_path):
-    with open(spec_path) as fh:
+    with open(spec_path, encoding="utf-8") as fh:
         spec = json.load(fh)
 
     # pass 1 discovers page -> section mapping and the page count

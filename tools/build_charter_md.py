@@ -91,8 +91,12 @@ def build(spec):
 
 
 def main(spec_path, out_path):
-    spec = json.load(open(spec_path))
-    open(out_path, "w").write(build(spec))
+    # The spec carries Greek section labels, so the encoding is never the
+    # platform default: Windows would read it as cp1252 and fail.
+    with open(spec_path, encoding="utf-8") as fh:
+        spec = json.load(fh)
+    with open(out_path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(build(spec))
     print("wrote", out_path)
 
 

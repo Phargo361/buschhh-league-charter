@@ -395,7 +395,7 @@ def title_page(spec):
 
 
 def main(spec_path, out_path):
-    with open(spec_path) as fh:
+    with open(spec_path, encoding="utf-8") as fh:
         spec = json.load(fh)
 
     doc = BaseDocTemplate(
