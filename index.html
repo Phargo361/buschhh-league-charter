@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buschhhhhhhhhhhh League Charter</title>
+<meta name="description" content="A ten team dynasty league. Teams keep their players from year to year. The Commissioner decides anything this charter does not cover.">
+<meta name="theme-color" content="#0d1e48">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Buschhhhhhhhhhhh League Charter">
+<meta property="og:description" content="A ten team dynasty league. Teams keep their players from year to year. The Commissioner decides anything this charter does not cover.">
+<meta property="og:image" content="https://phargo361.github.io/buschhh-league-charter/card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Buschhhhhhhhhhhh League Charter">
+<meta name="twitter:description" content="A ten team dynasty league. Teams keep their players from year to year. The Commissioner decides anything this charter does not cover.">
+<meta name="twitter:image" content="https://phargo361.github.io/buschhh-league-charter/card.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d1e48'/><path d='M11 8l10 8-10 8z' fill='%23ffc94a'/></svg>">
+<style>
+:root{
+  --bg-deep:#04081a; --bg-mid:#0d1e48; --glow:#1b3f86;
+  --panel:rgba(14,32,74,.86); --panel-2:rgba(8,18,46,.86);
+  --cyan:#7cdcf7; --cyan-dim:#3e7fc4; --edge:#28518f;
+  --text:#eaf2ff; --dim:#8fa8d6; --amber:#ffc94a; --sel:rgba(46,102,194,.55);
+  --ui:"Segoe UI",Roboto,"Helvetica Neue",Arial,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden;max-width:100%}
+body{
+  background:var(--bg-deep); color:var(--text); font-family:var(--ui);
+  font-size:15px; line-height:1.55; min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+/* CRT atmosphere: radial glow under scanlines */
+body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none}
+body::before{
+  background:
+    radial-gradient(60% 55% at 62% 45%,rgba(27,63,134,.55),transparent 70%),
+    linear-gradient(180deg,#04081a 0%,#0d1e48 45%,#04081a 100%);
+  z-index:-2;
+}
+body::after{
+  background:repeating-linear-gradient(
+    180deg,rgba(0,0,0,.17) 0 1px,transparent 1px 3px);
+  z-index:3; opacity:.55;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 16px 90px;position:relative;z-index:1;width:100%}
+
+/* window chrome */
+.win{
+  background:var(--panel); border:1.5px solid var(--cyan); border-radius:8px;
+  box-shadow:inset 0 0 0 3px rgba(40,81,143,.9),0 0 26px rgba(20,60,140,.35);
+}
+header.bar{display:flex;align-items:center;gap:16px;padding:12px 18px;margin-bottom:16px}
+.bar .kicker{
+  color:var(--cyan); font-weight:700; font-size:17px; letter-spacing:.22em;
+}
+.bar .divider{width:1px;align-self:stretch;background:var(--edge)}
+.bar .current{font-weight:700;font-size:15px;letter-spacing:.04em}
+.bar .greek{margin-left:auto;color:var(--dim);font-size:13px;letter-spacing:.1em}
+
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;align-items:start}
+
+/* sidebar */
+nav.side{padding:10px}
+.search{
+  width:100%;margin:2px 0 8px;padding:8px 10px;border-radius:5px;
+  background:rgba(4,10,28,.75);border:1px solid var(--edge);
+  color:var(--text);font-family:inherit;font-size:13px;
+}
+.search::placeholder{color:#6f88b6}
+.search:focus{outline:2px solid var(--cyan);outline-offset:1px}
+nav.side ul{list-style:none;margin:0;padding:0}
+nav.side button{
+  display:flex;align-items:center;gap:9px;width:100%;
+  background:none;border:0;border-radius:4px;cursor:pointer;
+  padding:7px 9px;color:var(--dim);font-family:inherit;font-size:13px;
+  font-weight:600;letter-spacing:.06em;text-align:left;text-transform:uppercase;
+}
+nav.side button .cursor{color:var(--amber);opacity:0;font-size:11px}
+nav.side button:hover{color:var(--text);background:rgba(46,102,194,.22)}
+nav.side button[aria-selected="true"]{background:var(--sel);color:#fff}
+nav.side button[aria-selected="true"] .cursor{opacity:1}
+nav.side button:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+nav.side li.hidden{display:none}
+.no-match{color:var(--dim);font-size:12px;padding:8px 9px}
+
+/* panel */
+main.panel{padding:18px 22px 24px;min-height:66vh}
+.panel-head{
+  display:flex;align-items:baseline;gap:12px;
+  padding-bottom:10px;margin-bottom:14px;border-bottom:1px solid var(--edge);
+}
+.panel-head .tag{color:var(--amber);font-weight:700;font-size:14px}
+.panel-head h1{margin:0;font-size:21px;letter-spacing:.14em;font-weight:700}
+.sect[hidden]{display:none}
+.sect{animation:slide-in .19s ease-out}
+@keyframes slide-in{
+  from{opacity:0;transform:translateX(var(--from,14px))}
+  to{opacity:1;transform:none}
+}
+.sect p{margin:0 0 11px}
+.sect p a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan-dim)}
+.sect p a:hover,.sect p a:focus-visible{color:#fff;border-bottom-color:#fff}
+
+/* the signature: dotted-leader config rows */
+.rows{margin:6px 0 14px}
+.row{display:flex;align-items:baseline;gap:8px;padding:4px 6px;border-radius:4px}
+.row:hover{background:rgba(46,102,194,.18)}
+.row-label{flex:0 1 auto}
+.row-dots{
+  flex:1 1 auto;min-width:20px;transform:translateY(-4px);
+  border-bottom:1.5px dotted rgba(110,142,196,.6);
+}
+.row-value{
+  flex:0 0 auto;color:var(--amber);font-weight:700;
+  font-variant-numeric:tabular-nums;text-align:right;
+}
+.row-note{margin:-2px 0 8px 14px;color:var(--dim);font-size:13.5px}
+
+.caption{display:flex;align-items:center;gap:10px;margin:16px 0 6px}
+.caption span{
+  color:var(--cyan);font-size:11.5px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;
+}
+.caption::after{content:"";flex:1;height:1px;background:var(--edge)}
+
+.sect ul{margin:4px 0 12px;padding-left:18px;list-style:none}
+.sect ul li{position:relative;padding-left:14px;margin-bottom:6px}
+.sect ul li::before{
+  content:"\25B8";position:absolute;left:0;color:var(--cyan);font-size:12px;
+}
+
+.callout{
+  display:flex;gap:11px;margin:14px 0;padding:12px 14px;border-radius:5px;
+  background:rgba(92,66,15,.62);border:1px solid var(--amber);
+}
+.callout p{margin:0;color:#ffe9b0}
+.callout-mark{color:var(--amber);font-weight:700}
+
+/* footer status bar */
+footer.hud{
+  position:fixed;left:0;right:0;bottom:0;z-index:4;
+  display:flex;align-items:center;gap:14px;
+  padding:9px 20px;font-size:12px;color:var(--dim);
+  background:linear-gradient(180deg,rgba(4,8,26,0),rgba(4,8,26,.94) 42%);
+}
+footer .count{margin:0 auto;font-variant-numeric:tabular-nums}
+footer .hints{display:flex;gap:14px}
+footer .hints.touch{display:none}
+footer .glyph{color:var(--cyan);font-weight:700}
+footer kbd{
+  background:rgba(46,102,194,.3);border:1px solid var(--edge);border-radius:3px;
+  padding:0 5px;font:inherit;font-size:11px;color:var(--text);
+}
+
+@media (max-width:820px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  nav.side{position:sticky;top:8px;z-index:2}
+  nav.side ul{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+  nav.side li{flex:0 0 auto}
+  nav.side button{white-space:nowrap;font-size:12px}
+  nav.side button .cursor{display:none}
+  main.panel{padding:16px 15px 20px}
+  .bar .greek{display:none}
+  footer .hints{display:none}
+  footer .hints.touch{display:flex}
+  footer.hud>span:first-child{display:none}
+  footer .hints.touch span{white-space:nowrap}
+  footer.hud{justify-content:space-between;padding:9px 16px}
+  .row{flex-wrap:wrap}
+  .row-dots{min-width:12px}
+  .row-value{margin-left:auto}
+  .layout{min-width:0}
+  nav.side{min-width:0}
+  nav.side ul{min-width:0}
+  main.panel{min-width:0;overflow-wrap:break-word}
+}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* printing falls back to a plain, complete document */
+@media print{
+  body{background:#fff;color:#000}
+  body::before,body::after{display:none}
+  nav.side,footer.hud,.search,header.bar{display:none}
+  .layout{display:block}
+  .win{border:0;box-shadow:none;background:#fff}
+  .sect[hidden]{display:block!important}
+  .sect{break-inside:avoid;margin-bottom:22px}
+  .panel-head h1,.panel-head .tag{color:#000}
+  .row-value{color:#000}
+  .caption span{color:#000}
+  .callout{background:#f4f4f4;border:1px solid #999}
+  .callout p{color:#000}
+  .row-dots{border-bottom:1px dotted #999}
+  .sect p a{color:#000;border-bottom:1px solid #999}
+  .sect p a::after{content:" (" attr(href) ")";font-size:.85em;color:#444}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="bar win">
+    <span class="kicker">CONFIG</span>
+    <span class="divider"></span>
+    <span class="current" id="current">THE NUMBERS</span>
+    <span class="greek" id="greek"></span>
+  </header>
+
+  <div class="layout">
+    <nav class="side win" role="tablist" aria-label="Charter sections">
+      <input class="search" id="search" type="search"
+             placeholder="Search the charter" aria-label="Search the charter">
+      <ul><li><button role="tab" aria-controls="the-numbers" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>The Numbers</span></button></li><li><button role="tab" aria-controls="calendar" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Calendar</span></button></li><li><button role="tab" aria-controls="money" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Money</span></button></li><li><button role="tab" aria-controls="platform" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Platform</span></button></li><li><button role="tab" aria-controls="scoring" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Scoring</span></button></li><li><button role="tab" aria-controls="lineup" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Lineup</span></button></li><li><button role="tab" aria-controls="roster" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Roster</span></button></li><li><button role="tab" aria-controls="drafts" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Drafts</span></button></li><li><button role="tab" aria-controls="free-agents" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Free Agents</span></button></li><li><button role="tab" aria-controls="trades" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Trades</span></button></li><li><button role="tab" aria-controls="playoffs" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Playoffs</span></button></li><li><button role="tab" aria-controls="toilet-bowl" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Toilet Bowl</span></button></li><li><button role="tab" aria-controls="rule-changes" aria-selected="false"><span class="cursor" aria-hidden="true">&#9654;</span><span>Rule Changes</span></button></li></ul>
+      <p class="no-match" id="nomatch" hidden>Nothing matches. Try fewer words.</p>
+    </nav>
+
+    <main class="panel win"><section class="sect" id="the-numbers" role="tabpanel" data-name="The Numbers" data-greek="ΑΡΙΘΜΟΙ" hidden><div class="panel-head"><span class="tag">&#9670;</span><h1>THE NUMBERS</h1></div><div class="rows"><div class="row"><span class="row-label">Buy-in</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">$200, due 2 weeks before the draft</span></div><div class="row"><span class="row-label">Payouts</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">1st $1,200  |  2nd $600  |  3rd $200</span></div><div class="row"><span class="row-label">Roster, offseason</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">32</span></div><div class="row"><span class="row-label">Roster, season</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">25</span></div><div class="row"><span class="row-label">IR spots</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">6</span></div><div class="row"><span class="row-label">Taxi spots</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">8</span></div><div class="row"><span class="row-label">Starters</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">9</span></div><div class="row"><span class="row-label">Rookie draft</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">4 rounds</span></div><div class="row"><span class="row-label">FAAB</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">$350 added each year</span></div><div class="row"><span class="row-label">Playoff teams</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">6</span></div></div></section><section class="sect" id="calendar" role="tabpanel" data-name="Calendar" data-greek="ΗΜΕΡΟΛΟΓΙΟΝ" hidden><div class="panel-head"><span class="tag">01</span><h1>CALENDAR</h1></div><div class="caption"><span>Part of year  /  When it starts</span></div><div class="rows"><div class="row"><span class="row-label">League Year and Offseason</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">3 weeks after the NFL draft ends</span></div><div class="row"><span class="row-label">Regular Season</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">Tuesday after NFL preseason Week 3</span></div></div><p>Exact dates are posted in the <a href="https://docs.google.com/spreadsheets/d/1NrR8_rtETrrGl2JDutt3imt0xptyGiSnfwXuVsSw77A/edit?usp=drivesdk" target="_blank" rel="noopener">league Google Sheet</a>.</p></section><section class="sect" id="money" role="tabpanel" data-name="Money" data-greek="ΑΡΓΥΡΙΟΝ" hidden><div class="panel-head"><span class="tag">02</span><h1>MONEY</h1></div><p>The buy-in is $200 per team. It is due 2 weeks before the draft.</p><p>A team that has not paid is locked. No moves, no draft, no auctions until the deposit is made.</p><div class="caption"><span>Finish  /  Prize</span></div><div class="rows"><div class="row"><span class="row-label">1st</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">$1,200</span></div><div class="row"><span class="row-label">2nd</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">$600</span></div><div class="row"><span class="row-label">3rd</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">$200</span></div></div></section><section class="sect" id="platform" role="tabpanel" data-name="Platform" data-greek="ΤΟΠΟΣ" hidden><div class="panel-head"><span class="tag">03</span><h1>PLATFORM</h1></div><p>The season runs on Sleeper, plus as much of the offseason as possible.</p><p>The first draft runs on Yahoo. Later drafts may move sites year to year.</p></section><section class="sect" id="scoring" role="tabpanel" data-name="Scoring" data-greek="ΒΑΘΜΟΙ" hidden><div class="panel-head"><span class="tag">04</span><h1>SCORING</h1></div><ul><li>Half PPR (0.5 per catch)</li><li>QB interception: minus 4</li><li>No kickers, no IDP</li><li>All other scoring is Yahoo standard</li></ul></section><section class="sect" id="lineup" role="tabpanel" data-name="Lineup" data-greek="ΤΑΞΙΣ" hidden><div class="panel-head"><span class="tag">05</span><h1>LINEUP</h1></div><p>Each team starts 9 players.</p><div class="caption"><span>Spot  /  How many</span></div><div class="rows"><div class="row"><span class="row-label">QB</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">1</span></div><div class="row"><span class="row-label">RB</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">2</span></div><div class="row"><span class="row-label">WR</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">2</span></div><div class="row"><span class="row-label">TE</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">1</span></div><div class="row"><span class="row-label">FLEX (WR / RB / TE)</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">2</span></div><div class="row"><span class="row-label">DEF</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">1</span></div></div><div class="callout" role="note"><span class="callout-mark" aria-hidden="true">!</span><p>Every team must start a full lineup every week. A manager who keeps leaving holes can be removed from the league and lose any money paid in.</p></div></section><section class="sect" id="roster" role="tabpanel" data-name="Roster" data-greek="ΚΑΤΑΛΟΓΟΣ" hidden><div class="panel-head"><span class="tag">06</span><h1>ROSTER</h1></div><div class="caption"><span>Period  /  Limit</span></div><div class="rows"><div class="row"><span class="row-label">Offseason</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">32</span></div><div class="row"><span class="row-label">Regular Season</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">25</span></div></div><p>Teams must cut to 25 by the Thursday of the week before the first NFL game.</p><p>A team still over 25 after that pays $10 FAAB per extra player, per day. If the team has no FAAB left, players are dropped at random until the roster hits 25.</p><div class="caption"><span>Injured Reserve</span></div><p>Six spots on top of the roster limit. Any player Sleeper allows.</p><div class="caption"><span>Taxi Squad</span></div><p>Eight spots. Taxi players do not count against the roster limit.</p><ul><li>Drafted rookies only. No veterans, no players acquired by trade.</li><li>A player who leaves the taxi squad cannot return to it.</li><li>A player with more than 3 years of NFL experience must be activated.</li></ul><p>A rookie must be placed on the taxi squad before the third NFL preseason game. After that game starts, no player may be added to the taxi squad.</p></section><section class="sect" id="drafts" role="tabpanel" data-name="Drafts" data-greek="ΚΛΗΡΟΣ" hidden><div class="panel-head"><span class="tag">07</span><h1>DRAFTS</h1></div><div class="caption"><span>First draft ever</span></div><p>A $400 auction for 25 spots, open to all players. Teams do not have to fill every position.</p><div class="caption"><span>Rookie draft</span></div><p>Begins in year two. Held within 3 weeks of the start of the League Year. Four rounds, rookies only.</p><div class="caption"><span>Draft slots</span></div><ul><li>Slots 1 through 6: the six playoff teams, ranked by how far they got in the playoffs. The champion takes slot 1.</li><li>Two teams are knocked out in each playoff round. Those teams are ranked by playoff seed. The better seed takes the lower slot number and picks later.</li><li>Slots 7 through 10: the four teams that missed the playoffs, ranked by regular season standings. The worst record takes slot 10.</li></ul><div class="caption"><span>Order</span></div><p>Every round uses the same order: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1.</p><p>The team in slot 10 picks first. The champion picks last in every round.</p></section><section class="sect" id="free-agents" role="tabpanel" data-name="Free Agents" data-greek="ΑΓΟΡΑ" hidden><div class="panel-head"><span class="tag">08</span><h1>FREE AGENTS</h1></div><p>FAAB is fake money used to bid on free agents. The high bid wins.</p><ul><li>$350 is added to each team's leftover balance at the start of the season.</li><li>The lowest bid is $0. No team may go below $0.</li><li>Offseason: bids run once a month in June, July, and August.</li><li>Season: bids run daily, Tuesday through Sunday. Dropped players sit on waivers from game time until Tuesday.</li></ul></section><section class="sect" id="trades" role="tabpanel" data-name="Trades" data-greek="ΑΝΤΑΛΛΑΓΗ" hidden><div class="panel-head"><span class="tag">09</span><h1>TRADES</h1></div><ul><li>The deadline is the end of the Regular Season. No trades during the playoffs. Trading reopens after Week 18.</li><li>A trade goes through as soon as both managers accept it.</li><li>Lopsided or dumb trades are never vetoed. Only proof of collusion, meaning two managers teaming up to cheat, undoes a trade.</li><li>FAAB and draft picks may be traded up to 2 years out. A manager must have paid the deposit for that year to trade its FAAB or picks away.</li></ul></section><section class="sect" id="playoffs" role="tabpanel" data-name="Playoffs" data-greek="ΑΓΩΝΕΣ" hidden><div class="panel-head"><span class="tag">10</span><h1>PLAYOFFS</h1></div><p>Playoffs run Weeks 15, 16, and 17. Six teams qualify.</p><ul><li>Seeds 1 through 5: wins, then total points, then head to head record, then head to head point differential.</li><li>Seed 6: the highest scoring team of those left, regardless of record.</li><li>Seeds 1 and 2 receive a Week 15 bye.</li></ul><p>The four teams that miss the playoffs play the Toilet Bowl. It does not affect draft order.</p></section><section class="sect" id="toilet-bowl" role="tabpanel" data-name="Toilet Bowl" data-greek="ΑΙΣΧΥΝΗ" hidden><div class="panel-head"><span class="tag">11</span><h1>TOILET BOWL</h1></div><p>The Toilet Bowl winner is the team that finishes last in the losers bracket.</p><p>The league champion picks that team's name for the next season. The team must use it all year.</p><p>If the Toilet Bowl winner quits the league, the punishment passes to the next worst finisher. If it cannot land on anyone, Mike serves it.</p></section><section class="sect" id="rule-changes" role="tabpanel" data-name="Rule Changes" data-greek="ΝΟΜΟΘΕΣΙΑ" hidden><div class="panel-head"><span class="tag">12</span><h1>RULE CHANGES</h1></div><p>There are three ways a rule changes: a Minor change, a Major change, or a Commissioner decision.</p><p>Any manager may propose a change at any time. The Commissioner decides whether it is Major or Minor. Managers then have one week to vote. A manager who does not vote counts as a no. All votes are recorded in the <a href="https://docs.google.com/spreadsheets/d/1NrR8_rtETrrGl2JDutt3imt0xptyGiSnfwXuVsSw77A/edit?usp=drivesdk" target="_blank" rel="noopener">league Google Sheet</a>.</p><div class="caption"><span>Type</span></div><div class="rows"><div class="row"><span class="row-label">Minor</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">6 of 10</span></div><p class="row-note">Right away, unless the vote says otherwise</p><div class="row"><span class="row-label">Major</span><span class="row-dots" aria-hidden="true"></span><span class="row-value">8 of 10</span></div><p class="row-note">Next League Year, unless the vote is unanimous</p></div><div class="callout" role="note"><span class="callout-mark" aria-hidden="true">!</span><p>The Commissioner may rule on anything this charter does not cover, and may fix clear mistakes or broken settings at any time. No vote is needed.</p></div></section></main>
+  </div>
+</div>
+
+<footer class="hud">
+  <span>Buschhhhhhhhhhhh League &middot; CHARTER</span>
+  <span class="count" id="count"></span>
+  <span class="hints">
+    <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> Move</span>
+    <span><kbd>/</kbd> Search</span>
+    <span><span class="glyph">&#9675;</span> Confirm</span>
+  </span>
+  <span class="hints touch"><span>&#8592; Swipe to change &#8594;</span></span>
+</footer>
+
+<script>
+(function(){
+  var buttons = Array.prototype.slice.call(
+    document.querySelectorAll('nav.side button'));
+  var panels = Array.prototype.slice.call(
+    document.querySelectorAll('.sect'));
+  var current = document.getElementById('current');
+  var greek = document.getElementById('greek');
+  var count = document.getElementById('count');
+  var search = document.getElementById('search');
+  var idx = 0;
+
+  function show(i, push){
+    if(i < 0 || i >= panels.length) return;
+    var dir = i > idx ? 1 : -1;
+    idx = i;
+    panels[i].style.setProperty('--from', dir > 0 ? '16px' : '-16px');
+    buttons.forEach(function(b, n){
+      b.setAttribute('aria-selected', n === i ? 'true' : 'false');
+    });
+    panels.forEach(function(p, n){ p.hidden = n !== i; });
+    var sec = panels[i];
+    current.textContent = sec.dataset.name.toUpperCase();
+    greek.textContent = sec.dataset.greek;
+    count.textContent = (i + 1) + ' / ' + panels.length;
+    if(push && location.hash !== '#' + sec.id){
+      try { history.replaceState(null, '', '#' + sec.id); }
+      catch(err) { /* some browsers block this on file:// */ }
+    }
+    var list = buttons[i].parentNode.parentNode;
+    if(list.scrollWidth > list.clientWidth + 2){
+      list.scrollLeft = buttons[i].offsetLeft
+        - (list.clientWidth - buttons[i].offsetWidth) / 2;
+    } else {
+      buttons[i].scrollIntoView({block:'nearest'});
+    }
+    window.scrollTo({top:0});
+  }
+
+  buttons.forEach(function(b, n){
+    b.addEventListener('click', function(){ show(n, true); });
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.target === search){
+      if(e.key === 'Escape'){ search.value=''; filter(''); search.blur(); }
+      if(e.key === 'Enter'){
+        var first = buttons.findIndex(function(b){
+          return !b.parentNode.classList.contains('hidden'); });
+        if(first > -1){ show(first, true); search.blur(); }
+      }
+      return;
+    }
+    if(e.key === 'ArrowDown' || e.key === 'j'){ e.preventDefault(); show(idx+1,true); }
+    else if(e.key === 'ArrowUp' || e.key === 'k'){ e.preventDefault(); show(idx-1,true); }
+    else if(e.key === 'Home'){ e.preventDefault(); show(0,true); }
+    else if(e.key === 'End'){ e.preventDefault(); show(panels.length-1,true); }
+    else if(e.key === '/'){ e.preventDefault(); search.focus(); search.select(); }
+  });
+
+  // Swipe left for the next section, right for the previous. Ignores
+  // gestures that start in the nav strip, which scrolls horizontally itself,
+  // and gestures that are mostly vertical, which are page scrolls.
+  var sx = 0, sy = 0, st = 0, tracking = false;
+  document.addEventListener('touchstart', function(e){
+    if(e.touches.length !== 1 || (e.target.closest &&
+       (e.target.closest('nav.side') || e.target.closest('input')))){
+      tracking = false; return;
+    }
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    st = Date.now(); tracking = true;
+  }, {passive:true});
+
+  document.addEventListener('touchend', function(e){
+    if(!tracking) return;
+    tracking = false;
+    var t = e.changedTouches[0];
+    var dx = t.clientX - sx, dy = t.clientY - sy;
+    if(Date.now() - st > 700) return;
+    if(Math.abs(dx) < 55) return;
+    if(Math.abs(dx) < Math.abs(dy) * 1.6) return;
+    var next = dx < 0 ? idx + 1 : idx - 1;
+    if(next < 0 || next >= panels.length) return;
+    show(next, true);
+  }, {passive:true});
+
+  function filter(q){
+    q = q.trim().toLowerCase();
+    var any = false;
+    buttons.forEach(function(b, n){
+      var hay = (b.textContent + ' ' + panels[n].textContent).toLowerCase();
+      var hit = !q || hay.indexOf(q) > -1;
+      b.parentNode.classList.toggle('hidden', !hit);
+      if(hit) any = true;
+    });
+    document.getElementById('nomatch').hidden = any;
+  }
+  search.addEventListener('input', function(){ filter(search.value); });
+
+  function fromHash(){
+    var id = location.hash.replace('#','');
+    var n = panels.findIndex(function(p){ return p.id === id; });
+    show(n > -1 ? n : 0, false);
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>

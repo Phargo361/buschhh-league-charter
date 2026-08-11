@@ -1,0 +1,457 @@
+{
+  "title": "Buschhhhhhhhhhhh League",
+  "subtitle": "Charter",
+  "greek_title": "ΝΟΜΟΣ ΤΗΣ ΛΕΓΕΩΝΟΣ",
+  "preamble": "A ten team dynasty league. Teams keep their players from year to year. The Commissioner decides anything this charter does not cover.",
+  "sections": [
+    {
+      "num": 0,
+      "name": "The Numbers",
+      "greek": "ΑΡΙΘΜΟΙ",
+      "blocks": [
+        {
+          "type": "kv",
+          "rows": [
+            [
+              "Buy-in",
+              "$200, due 2 weeks before the draft"
+            ],
+            [
+              "Payouts",
+              "1st $1,200  |  2nd $600  |  3rd $200"
+            ],
+            [
+              "Roster, offseason",
+              "32"
+            ],
+            [
+              "Roster, season",
+              "25"
+            ],
+            [
+              "IR spots",
+              "6"
+            ],
+            [
+              "Taxi spots",
+              "8"
+            ],
+            [
+              "Starters",
+              "9"
+            ],
+            [
+              "Rookie draft",
+              "4 rounds"
+            ],
+            [
+              "FAAB",
+              "$350 added each year"
+            ],
+            [
+              "Playoff teams",
+              "6"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "num": 1,
+      "name": "Calendar",
+      "greek": "ΗΜΕΡΟΛΟΓΙΟΝ",
+      "blocks": [
+        {
+          "type": "table",
+          "header": [
+            "Part of year",
+            "When it starts"
+          ],
+          "rows": [
+            [
+              "League Year and Offseason",
+              "3 weeks after the NFL draft ends"
+            ],
+            [
+              "Regular Season",
+              "Tuesday after NFL preseason Week 3"
+            ]
+          ],
+          "widths": [
+            0.45,
+            0.55
+          ]
+        },
+        {
+          "type": "para",
+          "text": "Exact dates are posted in the league Google Sheet.",
+          "link": {
+            "phrase": "league Google Sheet",
+            "url": "https://docs.google.com/spreadsheets/d/1NrR8_rtETrrGl2JDutt3imt0xptyGiSnfwXuVsSw77A/edit?usp=drivesdk"
+          }
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "name": "Money",
+      "greek": "ΑΡΓΥΡΙΟΝ",
+      "blocks": [
+        {
+          "type": "para",
+          "text": "The buy-in is $200 per team. It is due 2 weeks before the draft."
+        },
+        {
+          "type": "para",
+          "text": "A team that has not paid is locked. No moves, no draft, no auctions until the deposit is made."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Finish",
+            "Prize"
+          ],
+          "rows": [
+            [
+              "1st",
+              "$1,200"
+            ],
+            [
+              "2nd",
+              "$600"
+            ],
+            [
+              "3rd",
+              "$200"
+            ]
+          ],
+          "widths": [
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    },
+    {
+      "num": 3,
+      "name": "Platform",
+      "greek": "ΤΟΠΟΣ",
+      "blocks": [
+        {
+          "type": "para",
+          "text": "The season runs on Sleeper, plus as much of the offseason as possible."
+        },
+        {
+          "type": "para",
+          "text": "The first draft runs on Yahoo. Later drafts may move sites year to year."
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "name": "Scoring",
+      "greek": "ΒΑΘΜΟΙ",
+      "blocks": [
+        {
+          "type": "bullets",
+          "items": [
+            "Half PPR (0.5 per catch)",
+            "QB interception: minus 4",
+            "No kickers, no IDP",
+            "All other scoring is Yahoo standard"
+          ]
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "name": "Lineup",
+      "greek": "ΤΑΞΙΣ",
+      "blocks": [
+        {
+          "type": "para",
+          "text": "Each team starts 9 players."
+        },
+        {
+          "type": "table",
+          "header": [
+            "Spot",
+            "How many"
+          ],
+          "rows": [
+            [
+              "QB",
+              "1"
+            ],
+            [
+              "RB",
+              "2"
+            ],
+            [
+              "WR",
+              "2"
+            ],
+            [
+              "TE",
+              "1"
+            ],
+            [
+              "FLEX (WR / RB / TE)",
+              "2"
+            ],
+            [
+              "DEF",
+              "1"
+            ]
+          ],
+          "widths": [
+            0.62,
+            0.38
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Every team must start a full lineup every week. A manager who keeps leaving holes can be removed from the league and lose any money paid in."
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "name": "Roster",
+      "greek": "ΚΑΤΑΛΟΓΟΣ",
+      "blocks": [
+        {
+          "type": "table",
+          "header": [
+            "Period",
+            "Limit"
+          ],
+          "rows": [
+            [
+              "Offseason",
+              "32"
+            ],
+            [
+              "Regular Season",
+              "25"
+            ]
+          ],
+          "widths": [
+            0.62,
+            0.38
+          ]
+        },
+        {
+          "type": "para",
+          "text": "Teams must cut to 25 by the Thursday of the week before the first NFL game."
+        },
+        {
+          "type": "para",
+          "text": "A team still over 25 after that pays $10 FAAB per extra player, per day. If the team has no FAAB left, players are dropped at random until the roster hits 25."
+        },
+        {
+          "type": "sub",
+          "text": "Injured Reserve"
+        },
+        {
+          "type": "para",
+          "text": "Six spots on top of the roster limit. Any player Sleeper allows."
+        },
+        {
+          "type": "sub",
+          "text": "Taxi Squad"
+        },
+        {
+          "type": "para",
+          "text": "Eight spots. Taxi players do not count against the roster limit."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Drafted rookies only. No veterans, no players acquired by trade.",
+            "A player who leaves the taxi squad cannot return to it.",
+            "A player with more than 3 years of NFL experience must be activated."
+          ]
+        },
+        {
+          "type": "para",
+          "text": "A rookie must be placed on the taxi squad before the third NFL preseason game. After that game starts, no player may be added to the taxi squad."
+        }
+      ]
+    },
+    {
+      "num": 7,
+      "name": "Drafts",
+      "greek": "ΚΛΗΡΟΣ",
+      "blocks": [
+        {
+          "type": "sub",
+          "text": "First draft ever"
+        },
+        {
+          "type": "para",
+          "text": "A $400 auction for 25 spots, open to all players. Teams do not have to fill every position."
+        },
+        {
+          "type": "sub",
+          "text": "Rookie draft"
+        },
+        {
+          "type": "para",
+          "text": "Begins in year two. Held within 3 weeks of the start of the League Year. Four rounds, rookies only."
+        },
+        {
+          "type": "sub",
+          "text": "Draft slots"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Slots 1 through 6: the six playoff teams, ranked by how far they got in the playoffs. The champion takes slot 1.",
+            "Two teams are knocked out in each playoff round. Those teams are ranked by playoff seed. The better seed takes the lower slot number and picks later.",
+            "Slots 7 through 10: the four teams that missed the playoffs, ranked by regular season standings. The worst record takes slot 10."
+          ]
+        },
+        {
+          "type": "sub",
+          "text": "Order"
+        },
+        {
+          "type": "para",
+          "text": "Every round uses the same order: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1."
+        },
+        {
+          "type": "para",
+          "text": "The team in slot 10 picks first. The champion picks last in every round."
+        }
+      ]
+    },
+    {
+      "num": 8,
+      "name": "Free Agents",
+      "greek": "ΑΓΟΡΑ",
+      "blocks": [
+        {
+          "type": "para",
+          "text": "FAAB is fake money used to bid on free agents. The high bid wins."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "$350 is added to each team's leftover balance at the start of the season.",
+            "The lowest bid is $0. No team may go below $0.",
+            "Offseason: bids run once a month in June, July, and August.",
+            "Season: bids run daily, Tuesday through Sunday. Dropped players sit on waivers from game time until Tuesday."
+          ]
+        }
+      ]
+    },
+    {
+      "num": 9,
+      "name": "Trades",
+      "greek": "ΑΝΤΑΛΛΑΓΗ",
+      "blocks": [
+        {
+          "type": "bullets",
+          "items": [
+            "The deadline is the end of the Regular Season. No trades during the playoffs. Trading reopens after Week 18.",
+            "A trade goes through as soon as both managers accept it.",
+            "Lopsided or dumb trades are never vetoed. Only proof of collusion, meaning two managers teaming up to cheat, undoes a trade.",
+            "FAAB and draft picks may be traded up to 2 years out. A manager must have paid the deposit for that year to trade its FAAB or picks away."
+          ]
+        }
+      ]
+    },
+    {
+      "num": 10,
+      "name": "Playoffs",
+      "greek": "ΑΓΩΝΕΣ",
+      "blocks": [
+        {
+          "type": "para",
+          "text": "Playoffs run Weeks 15, 16, and 17. Six teams qualify."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Seeds 1 through 5: wins, then total points, then head to head record, then head to head point differential.",
+            "Seed 6: the highest scoring team of those left, regardless of record.",
+            "Seeds 1 and 2 receive a Week 15 bye."
+          ]
+        },
+        {
+          "type": "para",
+          "text": "The four teams that miss the playoffs play the Toilet Bowl. It does not affect draft order."
+        }
+      ]
+    },
+    {
+      "num": 11,
+      "name": "Toilet Bowl",
+      "greek": "ΑΙΣΧΥΝΗ",
+      "blocks": [
+        {
+          "type": "para",
+          "text": "The Toilet Bowl winner is the team that finishes last in the losers bracket."
+        },
+        {
+          "type": "para",
+          "text": "The league champion picks that team's name for the next season. The team must use it all year."
+        },
+        {
+          "type": "para",
+          "text": "If the Toilet Bowl winner quits the league, the punishment passes to the next worst finisher. If it cannot land on anyone, Mike serves it."
+        }
+      ]
+    },
+    {
+      "num": 12,
+      "name": "Rule Changes",
+      "greek": "ΝΟΜΟΘΕΣΙΑ",
+      "blocks": [
+        {
+          "type": "para",
+          "text": "There are three ways a rule changes: a Minor change, a Major change, or a Commissioner decision."
+        },
+        {
+          "type": "para",
+          "text": "Any manager may propose a change at any time. The Commissioner decides whether it is Major or Minor. Managers then have one week to vote. A manager who does not vote counts as a no. All votes are recorded in the league Google Sheet.",
+          "link": {
+            "phrase": "league Google Sheet",
+            "url": "https://docs.google.com/spreadsheets/d/1NrR8_rtETrrGl2JDutt3imt0xptyGiSnfwXuVsSw77A/edit?usp=drivesdk"
+          }
+        },
+        {
+          "type": "table",
+          "header": [
+            "Type",
+            "Votes to pass",
+            "Takes effect"
+          ],
+          "rows": [
+            [
+              "Minor",
+              "6 of 10",
+              "Right away, unless the vote says otherwise"
+            ],
+            [
+              "Major",
+              "8 of 10",
+              "Next League Year, unless the vote is unanimous"
+            ]
+          ],
+          "widths": [
+            0.16,
+            0.22,
+            0.62
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The Commissioner may rule on anything this charter does not cover, and may fix clear mistakes or broken settings at any time. No vote is needed."
+        }
+      ]
+    }
+  ],
+  "colophon": "Ratified by the managers. Amended by vote. Enforced by the Commissioner."
+}
