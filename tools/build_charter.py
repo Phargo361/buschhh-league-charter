@@ -6,8 +6,12 @@ Usage: python3 build_charter.py charter_spec.json out.pdf
 """
 
 import json
+import os
 import random
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import fontpaths
 
 from reportlab.lib.colors import Color
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
@@ -35,10 +39,18 @@ MARGIN = 1.02 * inch
 
 # ---------------------------------------------------------------- fonts
 
+# FreeSerif first; Times New Roman and DejaVu Serif are the substitutes that
+# still carry the Greek glyphs this document sets in the margins.
 FONTS = {
-    "Serif": "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
-    "Serif-Bold": "/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf",
-    "Serif-Italic": "/usr/share/fonts/truetype/freefont/FreeSerifItalic.ttf",
+    "Serif": fontpaths.require(
+        "the serif face", "FreeSerif.ttf", "times.ttf", "Times New Roman.ttf",
+        "DejaVuSerif.ttf"),
+    "Serif-Bold": fontpaths.require(
+        "the serif bold face", "FreeSerifBold.ttf", "timesbd.ttf",
+        "Times New Roman Bold.ttf", "DejaVuSerif-Bold.ttf"),
+    "Serif-Italic": fontpaths.require(
+        "the serif italic face", "FreeSerifItalic.ttf", "timesi.ttf",
+        "Times New Roman Italic.ttf", "DejaVuSerif-Italic.ttf"),
 }
 for name, path in FONTS.items():
     pdfmetrics.registerFont(TTFont(name, path))

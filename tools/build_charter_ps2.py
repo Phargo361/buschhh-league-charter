@@ -6,7 +6,11 @@ Usage: python3 build_charter_ps2.py charter_spec.json out.pdf
 """
 
 import json
+import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import fontpaths
 
 from reportlab.lib.colors import Color, HexColor
 from reportlab.lib.enums import TA_LEFT
@@ -53,11 +57,22 @@ AMBER = HexColor("#FFC94A")
 SEL_FILL = Color(0.180, 0.400, 0.760, alpha=0.55)
 WHITE = HexColor("#FFFFFF")
 
+# DejaVu first, then whatever the platform ships that carries Greek glyphs,
+# since the section labels need them. Condensed faces fall back to regular.
 FONTS = {
-    "UI": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-    "UI-Bold": "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-    "UI-Cond": "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf",
-    "UI-CondBold": "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf",
+    "UI": fontpaths.require(
+        "the body face", "DejaVuSans.ttf", "verdana.ttf", "arial.ttf",
+        "segoeui.ttf", "Arial Unicode.ttf"),
+    "UI-Bold": fontpaths.require(
+        "the bold face", "DejaVuSans-Bold.ttf", "verdanab.ttf", "arialbd.ttf",
+        "segoeuib.ttf"),
+    "UI-Cond": fontpaths.require(
+        "the condensed face", "DejaVuSansCondensed.ttf", "arialn.ttf",
+        "DejaVuSans.ttf", "verdana.ttf", "arial.ttf", "segoeui.ttf"),
+    "UI-CondBold": fontpaths.require(
+        "the condensed bold face", "DejaVuSansCondensed-Bold.ttf",
+        "arialnb.ttf", "DejaVuSans-Bold.ttf", "verdanab.ttf", "arialbd.ttf",
+        "segoeuib.ttf"),
 }
 for name, path in FONTS.items():
     pdfmetrics.registerFont(TTFont(name, path))
