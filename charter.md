@@ -28,7 +28,7 @@ A ten team dynasty league. Teams keep their players from year to year. The Commi
 | League Year and Offseason | 3 weeks after the NFL draft ends |
 | Regular Season | Tuesday after NFL preseason Week 3 |
 
-Exact dates are posted in the [league Google Sheet](https://docs.google.com/spreadsheets/d/1NrR8_rtETrrGl2JDutt3imt0xptyGiSnfwXuVsSw77A/edit?usp=drivesdk).
+The Commissioner posts the exact dates for each league year before the League Year begins.
 
 ---
 
@@ -179,7 +179,7 @@ If the Toilet Bowl winner quits the league, the punishment passes to the next wo
 
 There are three ways a rule changes: a Minor change, a Major change, or a Commissioner decision.
 
-Any manager may propose a change at any time. The Commissioner decides whether it is Major or Minor. Managers then have one week to vote. A manager who does not vote counts as a no. All votes are recorded in the [league Google Sheet](https://docs.google.com/spreadsheets/d/1NrR8_rtETrrGl2JDutt3imt0xptyGiSnfwXuVsSw77A/edit?usp=drivesdk).
+Any manager may propose a change at any time. The Commissioner decides whether it is Major or Minor. Managers then have one week to vote. A manager who does not vote counts as a no. The Commissioner records the result of every vote and posts it to the league.
 
 | Type | Votes to pass | Takes effect |
 |---|---|---|

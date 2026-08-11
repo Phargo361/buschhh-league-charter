@@ -84,11 +84,7 @@
         },
         {
           "type": "para",
-          "text": "Exact dates are posted in the league Google Sheet.",
-          "link": {
-            "phrase": "league Google Sheet",
-            "url": "https://docs.google.com/spreadsheets/d/1NrR8_rtETrrGl2JDutt3imt0xptyGiSnfwXuVsSw77A/edit?usp=drivesdk"
-          }
+          "text": "The Commissioner posts the exact dates for each league year before the League Year begins."
         }
       ]
     },
@@ -419,11 +415,7 @@
         },
         {
           "type": "para",
-          "text": "Any manager may propose a change at any time. The Commissioner decides whether it is Major or Minor. Managers then have one week to vote. A manager who does not vote counts as a no. All votes are recorded in the league Google Sheet.",
-          "link": {
-            "phrase": "league Google Sheet",
-            "url": "https://docs.google.com/spreadsheets/d/1NrR8_rtETrrGl2JDutt3imt0xptyGiSnfwXuVsSw77A/edit?usp=drivesdk"
-          }
+          "text": "Any manager may propose a change at any time. The Commissioner decides whether it is Major or Minor. Managers then have one week to vote. A manager who does not vote counts as a no. The Commissioner records the result of every vote and posts it to the league."
         },
         {
           "type": "table",
