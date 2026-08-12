@@ -24,13 +24,25 @@ def esc(text):
 # ---------------------------------------------------------------- blocks
 
 
-def render_menu_row(label, value):
+def render_menu_row(label, value, cal=None):
+    """One config row. `cal` is (iso_date, title, note) for an optional
+    add-to-calendar button, which the League Dates section uses."""
+    button = ""
+    if cal and cal[0]:
+        button = (
+            '<button class="cal" type="button" data-date="%s" data-title="%s" '
+            'data-note="%s" title="Add to calendar" '
+            'aria-label="Add %s to calendar">+</button>'
+            % (html.escape(cal[0], quote=True), html.escape(cal[1], quote=True),
+               html.escape(cal[2] or "", quote=True),
+               html.escape(cal[1], quote=True))
+        )
     return (
         '<div class="row">'
         '<span class="row-label">%s</span>'
         '<span class="row-dots" aria-hidden="true"></span>'
-        '<span class="row-value">%s</span>'
-        "</div>" % (esc(label), esc(value))
+        '<span class="row-value">%s</span>%s'
+        "</div>" % (esc(label), esc(value), button)
     )
 
 
@@ -87,17 +99,27 @@ def render_block(b):
 
     if kind == "table":
         hdr = b["header"]
+        # Parallel to rows when present; see build_dates.py.
+        ics = b.get("ics_dates") or []
         out = []
         if len(hdr) == 2:
             out.append(render_caption("%s  /  %s" % (hdr[0], hdr[1])))
             rows = "".join(render_menu_row(r[0], r[1]) for r in b["rows"])
         else:
             out.append(render_caption(hdr[0]))
+            if ics:
+                out.append(
+                    '<button class="cal-all" type="button">'
+                    "Add all %d dates to a calendar</button>" % len(ics)
+                )
             parts = []
-            for r in b["rows"]:
-                parts.append(render_menu_row(r[0], r[1]))
-                if len(r) > 2 and r[2]:
-                    parts.append('<p class="row-note">%s</p>' % esc(r[2]))
+            for i, r in enumerate(b["rows"]):
+                note = r[2] if len(r) > 2 else ""
+                date = ics[i] if i < len(ics) else ""
+                parts.append(render_menu_row(
+                    r[0], r[1], cal=(date, r[0], note) if date else None))
+                if note:
+                    parts.append('<p class="row-note">%s</p>' % esc(note))
             rows = "".join(parts)
         out.append('<div class="rows">%s</div>' % rows)
         return "".join(out)
@@ -208,6 +230,25 @@ main.panel{padding:18px 22px 24px;min-height:66vh}
 }
 .row-note{margin:-2px 0 8px 14px;color:var(--dim);font-size:13.5px}
 
+/* add-to-calendar */
+.row .cal{
+  flex:0 0 auto;margin-left:9px;width:21px;height:21px;padding:0;line-height:1;
+  background:transparent;border:1px solid var(--edge);border-radius:3px;
+  color:var(--cyan);font-family:inherit;font-size:14px;font-weight:700;
+  cursor:pointer;
+}
+.row .cal:hover{background:var(--sel);color:#fff;border-color:var(--cyan)}
+.row .cal:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+.row .cal.done{color:var(--amber);border-color:var(--amber)}
+.cal-all{
+  display:inline-block;margin:2px 0 10px;padding:6px 11px;
+  background:transparent;border:1px solid var(--edge);border-radius:4px;
+  color:var(--cyan);font-family:inherit;font-size:12px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+}
+.cal-all:hover{background:var(--sel);color:#fff;border-color:var(--cyan)}
+.cal-all:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+
 .caption{display:flex;align-items:center;gap:10px;margin:16px 0 6px}
 .caption span{
   color:var(--cyan);font-size:11.5px;font-weight:700;
@@ -260,6 +301,10 @@ footer kbd{
   .row{flex-wrap:wrap}
   .row-dots{min-width:12px}
   .row-value{margin-left:auto}
+  /* League Dates pairs a long label with a long date, and adds a button.
+     Let a label wrap rather than push a row wider than the screen. */
+  .row-label{min-width:0;overflow-wrap:anywhere}
+  .rows{min-width:0}
   .layout{min-width:0}
   nav.side{min-width:0}
   nav.side ul{min-width:0}
@@ -283,12 +328,110 @@ footer kbd{
   .callout{background:#f4f4f4;border:1px solid #999}
   .callout p{color:#000}
   .row-dots{border-bottom:1px dotted #999}
+  .cal,.cal-all{display:none}
   .sect p a{color:#000;border-bottom:1px solid #999}
   .sect p a::after{content:" (" attr(href) ")";font-size:.85em;color:#444}
 }
 """
 
 JS = """
+/* Add to calendar. The .ics is built here rather than linking out to a
+   calendar service, so the page keeps working offline and sends nobody's
+   league schedule to a third party. All-day events, per RFC 5545: DTEND is
+   exclusive, so it is the day after DTSTART. */
+(function(){
+  var LEAGUE = 'Buschhhhhhhhhhhh League';
+
+  function fold(line){
+    /* RFC 5545 caps a content line at 75 octets; continuations start with a
+       space. Plain ASCII here, so characters and octets are the same. */
+    if(line.length <= 75) return line;
+    var out = [line.slice(0, 75)];
+    for(var i = 75; i < line.length; i += 74){
+      out.push(' ' + line.slice(i, i + 74));
+    }
+    return out.join('\\r\\n');
+  }
+
+  function esc(text){
+    return String(text || '')
+      .replace(/\\\\/g, '\\\\\\\\')
+      .replace(/;/g, '\\\\;')
+      .replace(/,/g, '\\\\,')
+      .replace(/\\r?\\n/g, '\\\\n');
+  }
+
+  function compact(iso){ return iso.replace(/-/g, ''); }
+
+  function dayAfter(iso){
+    var d = new Date(iso + 'T00:00:00Z');
+    d.setUTCDate(d.getUTCDate() + 1);
+    return compact(d.toISOString().slice(0, 10));
+  }
+
+  function stamp(){
+    return new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  }
+
+  function build(events){
+    var now = stamp();
+    var lines = ['BEGIN:VCALENDAR', 'VERSION:2.0',
+                 'PRODID:-//' + LEAGUE + '//Charter//EN',
+                 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+    events.forEach(function(e, i){
+      lines.push('BEGIN:VEVENT');
+      lines.push('UID:' + compact(e.date) + '-' + i + '@buschhh-league');
+      lines.push('DTSTAMP:' + now);
+      lines.push('DTSTART;VALUE=DATE:' + compact(e.date));
+      lines.push('DTEND;VALUE=DATE:' + dayAfter(e.date));
+      lines.push('SUMMARY:' + esc(LEAGUE + ': ' + e.title));
+      if(e.note) lines.push('DESCRIPTION:' + esc(e.note));
+      lines.push('TRANSP:TRANSPARENT');
+      lines.push('END:VEVENT');
+    });
+    lines.push('END:VCALENDAR');
+    return lines.map(fold).join('\\r\\n') + '\\r\\n';
+  }
+
+  function save(name, text){
+    var blob = new Blob([text], {type: 'text/calendar;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 0);
+  }
+
+  function slugify(text){
+    return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(
+      /^-|-$/g, '');
+  }
+
+  function read(btn){
+    return {date: btn.dataset.date, title: btn.dataset.title,
+            note: btn.dataset.note};
+  }
+
+  document.addEventListener('click', function(ev){
+    var one = ev.target.closest && ev.target.closest('.cal');
+    if(one){
+      var e = read(one);
+      save(slugify(e.title) + '.ics', build([e]));
+      one.classList.add('done');
+      return;
+    }
+    var all = ev.target.closest && ev.target.closest('.cal-all');
+    if(all){
+      var section = all.closest('.sect');
+      var events = Array.prototype.slice.call(
+        section.querySelectorAll('.cal')).map(read);
+      if(events.length) save('league-dates.ics', build(events));
+    }
+  });
+})();
+
 (function(){
   var buttons = Array.prototype.slice.call(
     document.querySelectorAll('nav.side button'));

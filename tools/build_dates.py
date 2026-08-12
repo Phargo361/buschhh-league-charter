@@ -65,7 +65,11 @@ def week_sunday(first_game, n):
 
 
 def derive(anchors):
-    """Return [label, date, note] rows for one season."""
+    """Return (label, date, note) triples, dates as date objects.
+
+    The caller renders each date twice: once for people, once as ISO for the
+    add-to-calendar buttons.
+    """
     draft_end = d(anchors["nfl_draft_end"])
     last_pre = d(anchors["last_preseason_game"])
     first_game = d(anchors["first_nfl_game"])
@@ -87,37 +91,36 @@ def derive(anchors):
         taxi_note += " That is the %s draft class." % FIRST_PICKS[graduating]
 
     return [
-        ["NFL draft ends", fmt(draft_end), ""],
-        ["League Year starts", fmt(league_year), "Offseason opens."],
-        ["Bench goes up to 23", fmt(league_year),
+        ("NFL draft ends", draft_end, ""),
+        ("League Year starts", league_year, "Offseason opens."),
+        ("Bench goes up to 23", league_year,
          "The Commissioner raises the bench from 16 to 23 spots, for 32 "
-         "players in all."],
-        ["Taxi graduation", fmt(league_year), taxi_note],
-        ["Buy-ins due", fmt(buy_ins),
-         "$200 per team. An unpaid team is locked."],
-        ["New rule pitch", fmt(league_year + dt.timedelta(days=7)), ""],
-        ["New rule voting", fmt(league_year + dt.timedelta(days=14)),
-         "One week to vote. No vote counts as a no."],
-        ["Rookie draft", fmt(rookie_draft), "Four rounds, rookies only."],
-        ["Last preseason game", fmt(last_pre), ""],
-        ["Regular Season starts", fmt(reg_season), "$350 FAAB added."],
-        ["Bench goes down to 16", fmt(reg_season),
+         "players in all."),
+        ("Taxi graduation", league_year, taxi_note),
+        ("Buy-ins due", buy_ins, "$200 per team. An unpaid team is locked."),
+        ("New rule pitch", league_year + dt.timedelta(days=7), ""),
+        ("New rule voting", league_year + dt.timedelta(days=14),
+         "One week to vote. No vote counts as a no."),
+        ("Rookie draft", rookie_draft, "Four rounds, rookies only."),
+        ("Last preseason game", last_pre, ""),
+        ("Regular Season starts", reg_season, "$350 FAAB added."),
+        ("Bench goes down to 16", reg_season,
          "The Commissioner cuts the bench from 23 to 16 spots. Teams must be "
-         "at 25 players that day."],
-        ["First NFL game", fmt(first_game),
-         "Taxi squad closes. No player may be added to it after this."],
-        ["Trade deadline", fmt(week_sunday(first_game, 14)),
-         "End of Week 14. No trades during the playoffs."],
-        ["Playoffs start", fmt(week_sunday(first_game, 15)),
-         "Weeks 15, 16, and 17. Toilet Bowl runs alongside."],
-        ["Championship", fmt(week_sunday(first_game, 17)), ""],
-        ["Trading reopens", fmt(week_sunday(first_game, 18)
-                                + dt.timedelta(days=1)),
-         "After Week 18."],
+         "at 25 players that day."),
+        ("First NFL game", first_game,
+         "Taxi squad closes. No player may be added to it after this."),
+        ("Trade deadline", week_sunday(first_game, 14),
+         "End of Week 14. No trades during the playoffs."),
+        ("Playoffs start", week_sunday(first_game, 15),
+         "Weeks 15, 16, and 17. Toilet Bowl runs alongside."),
+        ("Championship", week_sunday(first_game, 17), ""),
+        ("Trading reopens",
+         week_sunday(first_game, 18) + dt.timedelta(days=1), "After Week 18."),
     ]
 
 
 def section_for(year, anchors):
+    events = derive(anchors)
     return {
         "num": 0,  # renumbered below
         "name": SECTION_NAME,
@@ -125,7 +128,12 @@ def section_for(year, anchors):
             {
                 "type": "table",
                 "header": ["%s Season" % year, "Date", "Note"],
-                "rows": derive(anchors),
+                "rows": [[label, fmt(date), note]
+                         for label, date, note in events],
+                # Parallel to rows. Only the HTML build reads it, to hang an
+                # add-to-calendar button off each date; the other renderers
+                # ignore keys they do not know.
+                "ics_dates": [date.isoformat() for _, date, _ in events],
                 "widths": [0.34, 0.30, 0.36],
             },
             {

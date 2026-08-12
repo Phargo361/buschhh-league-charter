@@ -94,6 +94,12 @@ Block types and what they render as:
 Two- and three-column tables both render as config rows. A third column
 becomes a dim sub-line under its row.
 
+A `table` may also carry `ics_dates`, a list of ISO dates parallel to `rows`.
+The HTML build hangs an add-to-calendar button off each row and generates the
+`.ics` in the browser, so the page still works offline and no one's schedule
+leaves the device. The other renderers ignore the key. `build_dates.py` emits
+it; nothing else should.
+
 A `para` may also carry an optional `link`:
 
 ```json
