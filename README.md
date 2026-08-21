@@ -21,6 +21,20 @@ for how to hand the job to Claude Code instead.
 
 ---
 
+## Card Lookup
+
+`cards/index.html` is a second page on this site, at `/cards/`. It prices 2025
+Panini Score football cards against the SportsCardsPro API: search a player,
+pick the card, pick the version pulled.
+
+It is **not** generated from `charter_spec.json`, and `update.sh` does not touch
+it. Edit it directly.
+
+A reader supplies their own API token in the page. It is kept in that browser
+and is sent nowhere but sportscardspro.com. No token is stored in this repo.
+
+---
+
 ## Amending the charter
 
 `charter_spec.json` is the single source of truth. Every format is generated
