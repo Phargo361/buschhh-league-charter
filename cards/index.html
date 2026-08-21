@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Card Lookup &middot; Buschhhhhhhhhhhh League</title>
+<meta name="description" content="Prices 2025 Panini Score football cards during a rip. Search a player, pick the card, pick the version pulled.">
+<meta name="theme-color" content="#0d1e48">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Card Lookup &middot; Buschhhhhhhhhhhh League">
+<meta property="og:description" content="Prices 2025 Panini Score football cards during a rip. Search a player, pick the card, pick the version pulled.">
+<meta property="og:image" content="https://phargo361.github.io/buschhh-league-charter/card.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d1e48'/><path d='M11 8l10 8-10 8z' fill='%23ffc94a'/></svg>">
+<style>
+:root{
+  --bg-deep:#04081a; --bg-mid:#0d1e48; --glow:#1b3f86;
+  --panel:rgba(14,32,74,.86); --panel-2:rgba(8,18,46,.86);
+  --cyan:#7cdcf7; --cyan-dim:#3e7fc4; --edge:#28518f;
+  --text:#eaf2ff; --dim:#8fa8d6; --amber:#ffc94a; --sel:rgba(46,102,194,.55);
+  --ui:"Segoe UI",Roboto,"Helvetica Neue",Arial,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden;max-width:100%}
+body{
+  background:var(--bg-deep); color:var(--text); font-family:var(--ui);
+  font-size:15px; line-height:1.55; min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none}
+body::before{
+  background:
+    radial-gradient(60% 55% at 62% 45%,rgba(27,63,134,.55),transparent 70%),
+    linear-gradient(180deg,#04081a 0%,#0d1e48 45%,#04081a 100%);
+  z-index:-2;
+}
+body::after{
+  background:repeating-linear-gradient(
+    180deg,rgba(0,0,0,.17) 0 1px,transparent 1px 3px);
+  z-index:3; opacity:.55;
+}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 90px;position:relative;z-index:1;width:100%}
+
+.win{
+  background:var(--panel); border:1.5px solid var(--cyan); border-radius:8px;
+  box-shadow:inset 0 0 0 3px rgba(40,81,143,.9),0 0 26px rgba(20,60,140,.35);
+}
+header.bar{display:flex;align-items:center;gap:16px;padding:12px 18px;margin-bottom:16px;flex-wrap:wrap}
+.bar .kicker{color:var(--cyan);font-weight:700;font-size:17px;letter-spacing:.22em}
+.bar .divider{width:1px;align-self:stretch;background:var(--edge)}
+.bar .current{font-weight:700;font-size:15px;letter-spacing:.04em}
+.bar a{margin-left:auto;color:var(--dim);text-decoration:none;font-size:13px;letter-spacing:.06em}
+.bar a:hover,.bar a:focus{color:var(--cyan)}
+
+.pad{padding:16px 18px}
+h1{margin:0 0 4px;font-size:19px;letter-spacing:.05em}
+.lede{color:var(--dim);font-size:13.5px;margin:0 0 16px}
+
+.row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.row input{
+  flex:1 1 220px;min-width:0;padding:11px 12px;border-radius:6px;
+  border:1px solid var(--edge);background:var(--panel-2);color:var(--text);
+  font:inherit;
+}
+.row input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 2px rgba(124,220,247,.25)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.btn{
+  padding:11px 18px;border-radius:6px;border:1px solid var(--cyan);
+  background:rgba(40,81,143,.55);color:var(--text);font-weight:700;
+  letter-spacing:.06em;white-space:nowrap;
+}
+.btn:hover:not([disabled]){background:var(--sel)}
+.btn[disabled]{opacity:.45;cursor:default}
+.note{font-size:12.5px;color:var(--dim);margin:0 0 18px}
+.note b{color:var(--text)}
+.note .warn{color:var(--amber)}
+
+.player{margin:14px 0;border-radius:8px;border:1px solid var(--edge);background:var(--panel-2);overflow:hidden}
+.phead{padding:11px 14px;border-bottom:1px solid var(--edge);background:rgba(27,63,134,.28)}
+.pname{font-weight:700;font-size:16px;letter-spacing:.03em}
+.pmeta{color:var(--dim);font-size:12px}
+
+.cards{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px}
+.card{
+  border:1px solid var(--edge);border-radius:6px;padding:8px 11px;text-align:left;
+  background:rgba(8,18,46,.7);line-height:1.35;
+}
+.card:hover{border-color:var(--cyan-dim)}
+.card[aria-pressed="true"]{border-color:var(--cyan);background:var(--sel)}
+.cset{font-weight:700;font-size:13px;display:block;letter-spacing:.03em}
+.cnum{color:var(--dim);font-size:11px}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px}
+.chips:not(:empty){padding-bottom:14px}
+.chip{
+  border:1px solid var(--edge);border-radius:6px;padding:7px 10px;
+  background:rgba(8,18,46,.7);display:flex;flex-direction:column;gap:1px;
+  min-width:100px;text-align:left;
+}
+.chip:hover{border-color:var(--cyan-dim)}
+.chip[aria-pressed="true"]{border-color:var(--amber);background:rgba(255,201,74,.12)}
+.cv{font-size:12px;color:var(--dim)}
+.cp{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px}
+.cp.none{color:var(--cyan-dim);font-weight:500}
+.cp.big{color:var(--amber)}
+
+.out{margin:0 14px 14px;padding:13px 14px;border-radius:6px;
+  background:rgba(27,63,134,.3);border:1px solid var(--cyan)}
+.out .v{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.out .v.big{color:var(--amber)}
+.out .l{color:var(--dim);font-size:12px}
+.msg{padding:18px 14px;color:var(--dim);text-align:center}
+.msg.err{color:var(--amber)}
+@media (max-width:520px){.wrap{padding:12px 10px 70px}.bar{gap:10px}.bar .kicker{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="bar win">
+  <span class="kicker">BUSCHHH</span>
+  <span class="divider"></span>
+  <span class="current">CARD LOOKUP</span>
+  <a href="../">&larr; Charter</a>
+</header>
+
+<div class="win pad">
+  <h1>2025 Panini Score</h1>
+  <p class="lede">Search a player, pick the card, then pick the version pulled.</p>
+
+  <div class="row">
+    <input id="tok" type="password" placeholder="SportsCardsPro API token (40 characters)"
+           autocomplete="off" spellcheck="false" aria-label="API token">
+    <button class="btn" id="save">SAVE</button>
+  </div>
+  <p class="note" id="tnote"></p>
+
+  <div class="row">
+    <input id="q" placeholder="Terry Bradshaw" autocomplete="off" aria-label="Player name">
+    <button class="btn" id="go">SEARCH</button>
+  </div>
+
+  <div id="out"></div>
+</div>
+
+</div>
+<script>
+var API    = 'https://www.sportscardspro.com';
+var SET    = '2025 panini score';
+var FAMILY = 'Football Cards 2025 Panini Score';
+var NAME   = /^(.*?)\s*(?:\[(.*?)\])?\s*#(\S+)$/;
+function $(id){ return document.getElementById(id); }
+function esc(s){
+  return String(s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+/* ---- token: this browser only; sent nowhere but the API ---- */
+var TOKEN = '';
+try { TOKEN = localStorage.getItem('scp_token') || ''; } catch (e) {}
+if (TOKEN) $('tok').value = TOKEN;
+function tnote(){
+  var n = $('tnote');
+  if (!TOKEN)
+    n.innerHTML = 'Needs a SportsCardsPro token, Legendary tier. It is kept in '
+                + '<b>this browser only</b> and is sent nowhere but sportscardspro.com.';
+  else if (TOKEN.length !== 40)
+    n.innerHTML = '<span class="warn">That is not 40 characters.</span>';
+  else
+    n.innerHTML = 'Token saved in this browser. <b>Ready.</b>';
+}
+tnote();
+$('save').onclick = function(){
+  TOKEN = $('tok').value.trim();
+  try { localStorage.setItem('scp_token', TOKEN); } catch (e) {}
+  tnote();
+};
+
+/* ---- prices come back as integer pennies ---- */
+function money(c){ return c == null ? null : c / 100; }
+function fmt(v){
+  if (v == null) return '-';
+  return v >= 1000 ? '$' + Math.round(v).toLocaleString() : '$' + v.toFixed(2);
+}
+
+/* ---- one call per search: /api/products already carries loose-price ---- */
+function search(name){
+  var q = name + ' ' + SET;
+  return fetch(API + '/api/products?t=' + encodeURIComponent(TOKEN)
+               + '&q=' + encodeURIComponent(q))
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      if (j.status !== 'success') throw new Error(j['error-message'] || 'search failed');
+      var players = new Map();
+      var list = j.products || [];
+      for (var i = 0; i < list.length; i++){
+        var p = list[i];
+        var cn = p['console-name'] || '';
+        if (cn.indexOf(FAMILY) !== 0) continue;   // set-lock; drops "Panini Select Score"
+        var m = NAME.exec(p['product-name'] || '');
+        if (!m) continue;
+        var who = m[1].trim();
+        var variant = (m[2] || 'Base').trim();
+        var num = m[3].replace(/^#/, '');
+        var subset = cn.slice(FAMILY.length).trim() || 'Base';
+        if (!players.has(who)) players.set(who, new Map());
+        var cards = players.get(who);
+        var key = subset + ' ' + num;
+        if (!cards.has(key)) cards.set(key, {subset:subset, num:num, variants:[]});
+        cards.get(key).variants.push({
+          variant: variant, id: p.id,
+          price: money(p['loose-price']),
+          vol: +(p['sales-volume'] || 0)
+        });
+      }
+      return players;
+    });
+}
+
+/* ---- render: one block per player ---- */
+function render(players, name){
+  var out = $('out');
+  out.innerHTML = '';
+  if (!players.size){
+    out.innerHTML = '<div class="msg">No 2025 Panini Score cards for <b>'
+                  + esc(name) + '</b>.</div>';
+    return;
+  }
+  var sorted = Array.from(players.entries()).sort(function(a,b){
+    return b[1].size - a[1].size || a[0].localeCompare(b[0]);
+  });
+
+  sorted.forEach(function(entry){
+    var who = entry[0], cards = entry[1];
+    var n = Array.from(cards.values()).reduce(function(s,c){ return s + c.variants.length; }, 0);
+    var box = document.createElement('div');
+    box.className = 'player';
+    box.innerHTML =
+      '<div class="phead"><span class="pname">' + esc(who) + '</span>'
+      + '<div class="pmeta">' + cards.size + ' card' + (cards.size > 1 ? 's' : '')
+      + ' · ' + n + ' version' + (n > 1 ? 's' : '') + '</div></div>'
+      + '<div class="cards"></div><div class="chips"></div><div class="slot"></div>';
+
+    var cbox    = box.querySelector('.cards');
+    var chipbox = box.querySelector('.chips');
+    var slot    = box.querySelector('.slot');
+
+    var list = Array.from(cards.values()).sort(function(a,b){
+      return a.subset.localeCompare(b.subset) || (+a.num) - (+b.num);
+    });
+
+    list.forEach(function(card){
+      var b = document.createElement('button');
+      b.className = 'card';
+      b.type = 'button';
+      b.setAttribute('aria-pressed', 'false');
+      b.innerHTML = '<span class="cset">' + esc(card.subset) + '</span>'
+        + '<span class="cnum">#' + esc(card.num) + ' · '
+        + card.variants.length + ' versions</span>';
+      b.onclick = function(){
+        Array.prototype.forEach.call(cbox.children, function(el){
+          el.setAttribute('aria-pressed', el === b ? 'true' : 'false');
+        });
+        showChips(card, chipbox, slot, who);
+      };
+      cbox.appendChild(b);
+    });
+    out.appendChild(box);
+    if (list.length === 1) cbox.firstChild.click();
+  });
+}
+
+function showChips(card, chipbox, slot, who){
+  chipbox.innerHTML = '';
+  slot.innerHTML = '';
+  var vs = card.variants.slice().sort(function(a,b){
+    return (a.price == null) - (b.price == null) || (b.price || 0) - (a.price || 0);
+  });
+
+  vs.forEach(function(v){
+    var b = document.createElement('button');
+    b.className = 'chip';
+    b.type = 'button';
+    b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = '<span class="cv">' + esc(v.variant) + '</span>'
+      + '<span class="cp ' + (v.price == null ? 'none' : (v.price >= 100 ? 'big' : ''))
+      + '">' + fmt(v.price) + '</span>';
+    b.onclick = function(){
+      Array.prototype.forEach.call(chipbox.children, function(el){
+        el.setAttribute('aria-pressed', el === b ? 'true' : 'false');
+      });
+      slot.innerHTML = '<div class="out">'
+        + '<div class="l">' + esc(who) + ' · ' + esc(card.subset)
+        + ' #' + esc(card.num) + ' · ' + esc(v.variant) + '</div>'
+        + '<div class="v' + (v.price != null && v.price >= 100 ? ' big' : '') + '">'
+        + fmt(v.price) + '</div>'
+        + '<div class="l">' + (v.price == null
+            ? 'No recorded sale. That is not $0. No one has sold one yet.'
+            : (v.vol ? 'ungraded · ' + v.vol + ' sold in the last year' : 'ungraded'))
+        + '</div></div>';
+    };
+    chipbox.appendChild(b);
+  });
+}
+
+/* ---- go ---- */
+function go(){
+  var name = $('q').value.trim();
+  if (!name) return;
+  if (TOKEN.length !== 40){
+    $('out').innerHTML = '<div class="msg err">Save a 40-character token first.</div>';
+    return;
+  }
+  $('go').disabled = true;
+  $('out').innerHTML = '<div class="msg">searching…</div>';
+  search(name).then(function(players){
+    render(players, name);
+  }).catch(function(e){
+    $('out').innerHTML = '<div class="msg err">' + esc(e.message) + '</div>';
+  }).then(function(){
+    $('go').disabled = false;
+  });
+}
+$('go').onclick = go;
+$('q').addEventListener('keydown', function(e){ if (e.key === 'Enter') go(); });
+$('tok').addEventListener('keydown', function(e){ if (e.key === 'Enter') $('save').click(); });
+</script>
+</body>
+</html>
