@@ -71,10 +71,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 }
 .btn:hover:not([disabled]){background:var(--sel)}
 .btn[disabled]{opacity:.45;cursor:default}
-.note{font-size:12.5px;color:var(--dim);margin:0 0 18px}
-.note b{color:var(--text)}
-.note .warn{color:var(--amber)}
-
 .player{margin:14px 0;border-radius:8px;border:1px solid var(--edge);background:var(--panel-2);overflow:hidden}
 .phead{padding:11px 14px;border-bottom:1px solid var(--edge);background:rgba(27,63,134,.28)}
 .pname{font-weight:700;font-size:16px;letter-spacing:.03em}
@@ -90,8 +86,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .cset{font-weight:700;font-size:13px;display:block;letter-spacing:.03em}
 .cnum{color:var(--dim);font-size:11px}
 
-.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px}
+.chips{padding:0 14px}
 .chips:not(:empty){padding-bottom:14px}
+.more{
+  border:1px solid var(--edge);border-radius:6px;padding:8px 12px;
+  background:rgba(8,18,46,.7);color:var(--dim);font-size:12.5px;
+  letter-spacing:.05em;width:100%;text-align:left;
+}
+.more:hover{border-color:var(--cyan-dim);color:var(--text)}
+.more[aria-expanded="true"]{border-color:var(--cyan);color:var(--text)}
+.tray{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .chip{
   border:1px solid var(--edge);border-radius:6px;padding:7px 10px;
   background:rgba(8,18,46,.7);display:flex;flex-direction:column;gap:1px;
@@ -129,13 +133,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <p class="lede">Search a player, pick the card, then pick the version pulled.</p>
 
   <div class="row">
-    <input id="tok" type="password" placeholder="Optional: your own SportsCardsPro token"
-           autocomplete="off" spellcheck="false" aria-label="API token">
-    <button class="btn" id="save">SAVE</button>
-  </div>
-  <p class="note" id="tnote"></p>
-
-  <div class="row">
     <input id="q" placeholder="Terry Bradshaw" autocomplete="off" aria-label="Player name">
     <button class="btn" id="go">SEARCH</button>
   </div>
@@ -156,36 +153,11 @@ function esc(s){
   });
 }
 
-/* ---- token ----
-   BAKED is the league's own SportsCardsPro token, embedded on purpose so the
-   page works with nothing typed in. This page is public, so that token is
+/* The league's SportsCardsPro token. This page is public, so this token is
    public: anyone who views source can read it and spend the league's API quota.
-   Rotate it on the SportsCardsPro subscription page if it starts getting abused.
-   A reader may paste their own token to use that instead; it is kept in their
-   browser and overrides the baked one. */
-var BAKED = '86aa1e0217c60771ace43b10bf483c11911d32fd';
-var TOKEN = BAKED;
-try { TOKEN = localStorage.getItem('scp_token') || BAKED; } catch (e) {}
-function tnote(){
-  var n = $('tnote');
-  if (TOKEN.length !== 40)
-    n.innerHTML = '<span class="warn">That is not 40 characters.</span>';
-  else if (TOKEN === BAKED)
-    n.innerHTML = 'Using the league token. <b>Ready.</b> A personal token can go '
-                + 'in the box above to use that instead.';
-  else
-    n.innerHTML = 'Using a personal token, saved in this browser. <b>Ready.</b>';
-}
-tnote();
-$('save').onclick = function(){
-  var v = $('tok').value.trim();
-  TOKEN = v || BAKED;                       // clearing the box falls back to the league token
-  try {
-    if (v) localStorage.setItem('scp_token', v);
-    else   localStorage.removeItem('scp_token');
-  } catch (e) {}
-  tnote();
-};
+   That trade was made deliberately. To rotate, generate a new token on the
+   SportsCardsPro subscription page and replace the value here. */
+var TOKEN = '86aa1e0217c60771ace43b10bf483c11911d32fd';
 
 /* ---- prices come back as integer pennies ---- */
 function money(c){ return c == null ? null : c / 100; }
@@ -272,7 +244,7 @@ function render(players, name){
         Array.prototype.forEach.call(cbox.children, function(el){
           el.setAttribute('aria-pressed', el === b ? 'true' : 'false');
         });
-        showChips(card, chipbox, slot, who);
+        showCard(card, chipbox, slot, who);
       };
       cbox.appendChild(b);
     });
@@ -281,36 +253,75 @@ function render(players, name){
   });
 }
 
-function showChips(card, chipbox, slot, who){
+function priceLine(v){
+  return v.price == null
+    ? 'No recorded sale. That is not $0. No one has sold one yet.'
+    : (v.vol ? 'ungraded · ' + v.vol + ' sold in the last year' : 'ungraded');
+}
+
+/* The plain Base card is what comes out of a pack most of the time, so it leads.
+   The parallels stay folded away behind a button until someone pulled one. */
+function showCard(card, chipbox, slot, who){
   chipbox.innerHTML = '';
   slot.innerHTML = '';
+
   var vs = card.variants.slice().sort(function(a,b){
     return (a.price == null) - (b.price == null) || (b.price || 0) - (a.price || 0);
   });
+  var base = null;
+  for (var i = 0; i < vs.length; i++){
+    if (vs[i].variant === 'Base' || vs[i].variant === 'Base jersey'){ base = vs[i]; break; }
+  }
+  var others = vs.filter(function(v){ return v !== base; });
+
+  function headline(v){
+    slot.innerHTML = '<div class="out">'
+      + '<div class="l">' + esc(who) + ' · ' + esc(card.subset)
+      + ' #' + esc(card.num) + ' · ' + esc(v.variant) + '</div>'
+      + '<div class="v' + (v.price != null && v.price >= 100 ? ' big' : '') + '">'
+      + fmt(v.price) + '</div>'
+      + '<div class="l">' + priceLine(v) + '</div></div>';
+  }
+  headline(base || vs[0]);
+
+  if (!others.length) return;
+
+  var toggle = document.createElement('button');
+  toggle.className = 'more';
+  toggle.type = 'button';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.textContent = 'Show ' + others.length + ' other version'
+                     + (others.length > 1 ? 's' : '');
+  chipbox.appendChild(toggle);
+
+  var tray = document.createElement('div');
+  tray.className = 'tray';
+  tray.hidden = true;
+  chipbox.appendChild(tray);
+
+  toggle.onclick = function(){
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+    tray.hidden = open;
+    toggle.textContent = (open ? 'Show ' : 'Hide ') + others.length
+      + ' other version' + (others.length > 1 ? 's' : '');
+  };
 
   vs.forEach(function(v){
     var b = document.createElement('button');
     b.className = 'chip';
     b.type = 'button';
-    b.setAttribute('aria-pressed', 'false');
+    b.setAttribute('aria-pressed', v === (base || vs[0]) ? 'true' : 'false');
     b.innerHTML = '<span class="cv">' + esc(v.variant) + '</span>'
       + '<span class="cp ' + (v.price == null ? 'none' : (v.price >= 100 ? 'big' : ''))
       + '">' + fmt(v.price) + '</span>';
     b.onclick = function(){
-      Array.prototype.forEach.call(chipbox.children, function(el){
+      Array.prototype.forEach.call(tray.children, function(el){
         el.setAttribute('aria-pressed', el === b ? 'true' : 'false');
       });
-      slot.innerHTML = '<div class="out">'
-        + '<div class="l">' + esc(who) + ' · ' + esc(card.subset)
-        + ' #' + esc(card.num) + ' · ' + esc(v.variant) + '</div>'
-        + '<div class="v' + (v.price != null && v.price >= 100 ? ' big' : '') + '">'
-        + fmt(v.price) + '</div>'
-        + '<div class="l">' + (v.price == null
-            ? 'No recorded sale. That is not $0. No one has sold one yet.'
-            : (v.vol ? 'ungraded · ' + v.vol + ' sold in the last year' : 'ungraded'))
-        + '</div></div>';
+      headline(v);
     };
-    chipbox.appendChild(b);
+    tray.appendChild(b);
   });
 }
 
@@ -318,10 +329,6 @@ function showChips(card, chipbox, slot, who){
 function go(){
   var name = $('q').value.trim();
   if (!name) return;
-  if (TOKEN.length !== 40){
-    $('out').innerHTML = '<div class="msg err">Save a 40-character token first.</div>';
-    return;
-  }
   $('go').disabled = true;
   $('out').innerHTML = '<div class="msg">searching…</div>';
   search(name).then(function(players){
@@ -334,7 +341,6 @@ function go(){
 }
 $('go').onclick = go;
 $('q').addEventListener('keydown', function(e){ if (e.key === 'Enter') go(); });
-$('tok').addEventListener('keydown', function(e){ if (e.key === 'Enter') $('save').click(); });
 </script>
 </body>
 </html>

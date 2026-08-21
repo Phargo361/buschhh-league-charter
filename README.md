@@ -37,8 +37,10 @@ quota against it. That trade was made on purpose. Rotate the token on the
 SportsCardsPro subscription page if it starts getting abused, and update
 `BAKED` in `cards/index.html`.
 
-A reader may paste their own token to use that instead. It is kept in their
-browser and overrides the embedded one.
+The page has no token field. It searches and prices with no setup.
+
+Each card leads with its plain Base price, since that is what a pack usually
+yields. The parallels stay folded behind a button until someone pulled one.
 
 ---
 
