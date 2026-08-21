@@ -129,7 +129,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <p class="lede">Search a player, pick the card, then pick the version pulled.</p>
 
   <div class="row">
-    <input id="tok" type="password" placeholder="SportsCardsPro API token (40 characters)"
+    <input id="tok" type="password" placeholder="Optional: your own SportsCardsPro token"
            autocomplete="off" spellcheck="false" aria-label="API token">
     <button class="btn" id="save">SAVE</button>
   </div>
@@ -156,24 +156,34 @@ function esc(s){
   });
 }
 
-/* ---- token: this browser only; sent nowhere but the API ---- */
-var TOKEN = '';
-try { TOKEN = localStorage.getItem('scp_token') || ''; } catch (e) {}
-if (TOKEN) $('tok').value = TOKEN;
+/* ---- token ----
+   BAKED is the league's own SportsCardsPro token, embedded on purpose so the
+   page works with nothing typed in. This page is public, so that token is
+   public: anyone who views source can read it and spend the league's API quota.
+   Rotate it on the SportsCardsPro subscription page if it starts getting abused.
+   A reader may paste their own token to use that instead; it is kept in their
+   browser and overrides the baked one. */
+var BAKED = '86aa1e0217c60771ace43b10bf483c11911d32fd';
+var TOKEN = BAKED;
+try { TOKEN = localStorage.getItem('scp_token') || BAKED; } catch (e) {}
 function tnote(){
   var n = $('tnote');
-  if (!TOKEN)
-    n.innerHTML = 'Needs a SportsCardsPro token, Legendary tier. It is kept in '
-                + '<b>this browser only</b> and is sent nowhere but sportscardspro.com.';
-  else if (TOKEN.length !== 40)
+  if (TOKEN.length !== 40)
     n.innerHTML = '<span class="warn">That is not 40 characters.</span>';
+  else if (TOKEN === BAKED)
+    n.innerHTML = 'Using the league token. <b>Ready.</b> A personal token can go '
+                + 'in the box above to use that instead.';
   else
-    n.innerHTML = 'Token saved in this browser. <b>Ready.</b>';
+    n.innerHTML = 'Using a personal token, saved in this browser. <b>Ready.</b>';
 }
 tnote();
 $('save').onclick = function(){
-  TOKEN = $('tok').value.trim();
-  try { localStorage.setItem('scp_token', TOKEN); } catch (e) {}
+  var v = $('tok').value.trim();
+  TOKEN = v || BAKED;                       // clearing the box falls back to the league token
+  try {
+    if (v) localStorage.setItem('scp_token', v);
+    else   localStorage.removeItem('scp_token');
+  } catch (e) {}
   tnote();
 };
 

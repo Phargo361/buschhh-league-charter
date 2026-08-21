@@ -30,8 +30,15 @@ pick the card, pick the version pulled.
 It is **not** generated from `charter_spec.json`, and `update.sh` does not touch
 it. Edit it directly.
 
-A reader supplies their own API token in the page. It is kept in that browser
-and is sent nowhere but sportscardspro.com. No token is stored in this repo.
+The league's SportsCardsPro token is embedded in the page so it works with
+nothing typed in. **That token is therefore public**: this is a public repo and
+a public site, so anyone who views source can read it and spend the league's API
+quota against it. That trade was made on purpose. Rotate the token on the
+SportsCardsPro subscription page if it starts getting abused, and update
+`BAKED` in `cards/index.html`.
+
+A reader may paste their own token to use that instead. It is kept in their
+browser and overrides the embedded one.
 
 ---
 
